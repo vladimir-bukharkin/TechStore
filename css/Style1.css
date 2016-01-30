@@ -88,6 +88,10 @@ body {
     margin-left: 40px;
 }
 
+.ToCar:hover {
+    box-shadow: inset 0 0 15px rgba(163,255,42,.5);
+}
+
 .headCar {
     float: left;
     margin-left: 0;
@@ -190,7 +194,6 @@ a {
     text-align: center;
     font-size: x-large;
     font-weight: 200;
-    font-family: Arial;
 }
 
 .footer {
