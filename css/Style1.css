@@ -1,5 +1,5 @@
 body {
-    min-width: 500px;
+    min-width: 900px;
     font-family: PTSans, Helvetica, Arial, sans-serif;
     font-size: 16px;
     color: black;
@@ -190,7 +190,7 @@ a {
 }
 
 .central-part {
-    background-color: rgb(253,253,253);
+    background-color: rgb(243,243,243);
     box-shadow: inset 0px 0px 10px rgba(0,0,0,.2);
 }
 
@@ -203,7 +203,8 @@ a {
 
 .row {
     display: inline-block;
-    border-color: #B94A48;
+    margin: 0;
+
 }
 .item {
     float: left;
