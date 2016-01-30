@@ -1,0 +1,77 @@
+body {
+    min-width: 500px;
+    font-family: PTSans, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    background-color: #F6F6F6;
+    margin: 0;
+    padding: 0;
+}
+
+.searchSubmit {
+    background: transparent url('../Images/SearchButtom.png') no-repeat center top;
+}
+
+.header{
+    background-color: lightgray;
+}
+
+.logo {
+    height: 100px;
+    width: 175px;
+    display: inline-block;
+    float: left;
+    margin: 20px 30px 20px 0px;
+}
+
+.layout-positioner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    border: dotted black;
+}
+.layout-positioner:after {
+    content:'';
+    clear:both;
+    display:table;
+}
+
+.search {
+    float: left;
+    height: 60px;
+    width: 52%;
+    margin: 30px 50px 0px 0px;
+    background-color: white;
+    border: solid lightgreen 1px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.rightHeader {
+    border: solid red;
+    float: left;
+    height: 60px;
+    width: 300px;
+    margin: 30px 0px 0px 0px;
+}
+
+.inputSearch  {
+    border: none;
+    border-radius: 100px;
+    height: 50px;
+    width: 90%;
+    text-indent: 15px;
+
+}
+
+.submitSearchBottom {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    height: 60px;
+    width: 60px;
+    float: right;
+    border-radius: 10px;
+    background: url("../Images/SearchButtom.png") no-repeat center;
+    background-size: 30px;
+}
