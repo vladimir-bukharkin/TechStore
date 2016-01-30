@@ -74,14 +74,24 @@ body {
     background-size: 30px;
 }
 
-.car_button {
+.ToCar {
     width: 180px;
-    height: 100%;
-    float: left;
+    height: 60px;
     border-radius: 10px;
-    text-align: center;
+    text-indent: 50px;
+    line-height: 60px;
     box-shadow: inset -1px -1px 0px rgba(0,0,0,.2);
     border: solid rgb(224,224,224) 1px;
+    color: black;
+    background: url("../Images/Car.png") no-repeat 15% 50%;
+    background-size: 35px;
+    margin-left: 40px;
+}
+
+.headCar {
+    float: left;
+    margin-left: 0;
+    text-indent: 80px;
 }
 
 
@@ -211,6 +221,29 @@ a {
     border: 1px solid #C09853;
     text-align: center;
     padding: 10px;
-    height: 300px;
-
+    height: 400px;
+    margin-right: 4px;
+    color: black;
 }
+
+.main-image {
+    margin-left: 28px;
+    height: 200px;
+    width: 200px;
+    border: solid gray 1px;
+}
+
+.product-name {
+    height: 60px;
+    width: 90%;
+    margin: 15px 5%;
+    color: black;
+}
+
+.Price {
+    color: black;
+    font-size: large;
+    text-align: center;
+    margin-bottom: 15px;
+}
+

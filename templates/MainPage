@@ -20,7 +20,7 @@
                     </form>
                 </div>
                 <div class="rightHeader">
-                    <a href="fgsg"><div class="car_button">CAR</div></a>
+                    <a href="fgsg"><div class="ToCar headCar">В корзину</div></a>
                     <div class="login_positioner">
                             <a href="fgsg"><div class="entry_button login_cell">Вход</div></a>
                             <a href="fgsg"><div class="registration_button login_cell">Регистрация</div></a>
@@ -36,35 +36,35 @@
         <div class="main-menu">
             <div class="catalog">Каталог товаров</div>
             <ul>
-                <li class="notebook-menu"><a href="CategoryPage.html">Ноутбуки и планшеты</a>
+                <li class="notebook-menu"><a href="CategoryPage.php">Ноутбуки и планшеты</a>
                     <ul class="sub">
                         <li><a href="ProductPage.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
                         <li><a href="ProductPage.html">Ноутбук Asus X553MA-SX859H (черный)</a></li>
                         <li><a href="ProductPage.html">Ноутбук HP 15-af003ur (ENERGY STAR) (черный)</a></li>
                     </ul>
                 </li>
-                <li class="PC-menu"><a href="CategoryPage.html">Компьютеры и периферия</a>
+                <li class="PC-menu"><a href="CategoryPage.php">Компьютеры и периферия</a>
                     <ul>
                         <li><a href="ProductPage.html">Системный блок Apple Mac Pro (MD878) (черный)</a></li>
                         <li><a href="ProductPage.html">Монитор Apple Thunderbolt display 27 </a></li>
                         <li><a href="ProductPage.html">USB накопитель SanDisk Ultra Dual 3.0 32Gb (черный) </a></li>
                     </ul>
                 </li>
-                <li class="phones-menu"><a href="CategoryPage.html">Телефоны и смарт-часы</a>
+                <li class="phones-menu"><a href="CategoryPage.php">Телефоны и смарт-часы</a>
                     <ul>
                         <li><a href="ProductPage.html">Мобильный телефон Highscreen Power Four (черный) </a></li>
                         <li><a href="ProductPage.html">Мобильный телефон Asus ZenFone 2 Laser ZE500KL 16Gb (красный)</a></li>
                         <li><a href="ProductPage.html">Мобильный телефон ZTE Blade S6 (серебристый)</a></li>
                     </ul>
                 </li>
-                <li class="network-device-menu"><a href="CategoryPage.html">Сетевое оборудование</a>
+                <li class="network-device-menu"><a href="CategoryPage.php">Сетевое оборудование</a>
                     <ul>
                         <li><a href="ProductPage.html">Маршрутизатор Mikrotik RB951G-2HnD</a></li>
                         <li><a href="ProductPage.html">Маршрутизатор ASUS RT-N11P</a></li>
                         <li><a href="ProductPage.html">Серверные шкафы 19'</a></li>
                     </ul>
                 </li>
-                <li class="hardware-PC-menu"><a href="CategoryPage.html">Комплектующие для ПК</a>
+                <li class="hardware-PC-menu"><a href="CategoryPage.php">Комплектующие для ПК</a>
                     <ul>
                         <li><a href="ProductPage.html">Процессор AMD FX-8320 OEM</a></li>
                         <li><a href="ProductPage.html">Процессор Intel Core i7-5960X BOX</a></li>
@@ -82,46 +82,64 @@
                 <div class="row">
                     <div class="item">
                         <a href="ProductPage.html">
-                            <img alt="Notebook" src="Изображения/Notebook.jpg">
+                            <div class="main-image">
+                                <img alt="Notebook" src="../Images/30023889m.jpg" width="100%" height="100%">
+                            </div>
                             <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
                             <div class="Price">21990р.</div>
+                            <div class="ToCar">В корзину</div>
                         </a>
                     </div>
                     <div class="item">
                         <a href="ProductPage.html">
-                            <img alt="AMD" src="Изображения/AMD.jpg">
+                            <div class="main-image">
+                                <img alt="AMD" src="../Images/30023889m.jpg" width="100%" height="100%">
+                            </div>
                             <div class="product-name">Процессор AMD A4-4000 BOX</div>
                             <div class="Price">2330р.</div>
+                            <div class="ToCar">В корзину</div>
                         </a>
                     </div>
                     <div class="item">
                         <a href="ProductPage.html">
-                            <img alt="Gigbyte" src="Изображения/Gigabyte.jpg">
+                            <div class="main-image">
+                                <img alt="Gigbyte" src="../Images/30023889m.jpg" width="100%" height="100%">
+                            </div>
                             <div class="product-name">Видеокарта GIGABYTE GeForce GTX 970 [GV-N970G1 GAMING-4GD 1.0]</div>
                             <div class="Price">26990р.</div>
+                            <div class="ToCar">В корзину</div>
                         </a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="item">
                         <a href="ProductPage.html">
-                            <img alt="Meizu" src="Изображения/Meizu.jpg">
+                            <div class="main-image">
+                                <img alt="Meizu" src="../Images/30023889m.jpg" width="100%" height="100%">
+                            </div>
                             <div class="product-name">5" Смартфон Meizu M2 mini 16 Гб серый</div>
                             <div class="Price">13390р.</div>
+                            <div class="ToCar">В корзину</div>
                         </a>
                     </div>
                     <div class="item">
                         <a href="ProductPage.html">
-                            <img alt="WD" src="Изображения/WD.jpg">
+                            <div class="main-image">
+                                <img alt="WD" src="../Images/30023889m.jpg" width="100%" height="100%">
+                            </div>
                             <div class="product-name">Жесткий диск WD Caviar Blue WD10EZEX 1 Тб</div>
                             <div class="Price">4550р.</div>
+                            <div class="ToCar">В корзину</div>
                         </a>
                     </div>
                     <div class="item">
                         <a href="ProductPage.html">
-                            <img alt="Corpus" src="Изображения/Corpus.jpg">
+                            <div class="main-image">
+                                <img alt="Corpus" src="../Images/30023889m.jpg" width="100%" height="100%">
+                            </div>
                             <div class="product-name">Корпус Deepcool Tesseract SW</div>
                             <div class="Price">3550р.</div>
+                            <div class="ToCar">В корзину</div>
                         </a>
                     </div>
                 </div>
