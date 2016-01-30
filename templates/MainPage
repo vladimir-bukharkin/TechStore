@@ -129,6 +129,7 @@
         </div>
     </div>
     </div>
+
     <!-- Footer -->
     <div class="footer">
         <div class="layout-positioner">
@@ -137,7 +138,6 @@
                 <p>Группа ВР-09-15-11</p>
             </div>
         </div>
-    </div>
     </div>
 </body>
 </html>

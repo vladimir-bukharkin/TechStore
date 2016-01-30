@@ -28,7 +28,6 @@ body {
     max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    border: dotted black;
 }
 .layout-positioner:after {
     content:'';
@@ -94,7 +93,6 @@ body {
     text-align: center;
     color: black;
     font-size: small;
-    background: white;
 }
 
 .entry_button {
@@ -174,8 +172,7 @@ a {
 .main-part {
     float: left;
     width: 900px;
-    border: solid red;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
 .HelloDiv {
@@ -187,6 +184,8 @@ a {
 }
 
 .footer {
+    background-color: lightgray;
+    margin-bottom: 2%;
 }
 
 .central-part {
@@ -198,7 +197,6 @@ a {
     display: table;
     margin: 0;
     border-spacing: 20px;
-    border: dashed black;
 }
 
 .row {
