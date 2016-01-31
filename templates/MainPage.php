@@ -36,41 +36,15 @@
         <div class="main-menu">
             <div class="catalog">Каталог товаров</div>
             <ul>
-                <li class="notebook-menu"><a href="CategoryPage.php">Ноутбуки и планшеты</a>
-                    <ul class="sub">
-                        <li><a href="ProductPage.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
-                        <li><a href="ProductPage.html">Ноутбук Asus X553MA-SX859H (черный)</a></li>
-                        <li><a href="ProductPage.html">Ноутбук HP 15-af003ur (ENERGY STAR) (черный)</a></li>
-                    </ul>
-                </li>
-                <li class="PC-menu"><a href="CategoryPage.php">Компьютеры и периферия</a>
-                    <ul>
-                        <li><a href="ProductPage.html">Системный блок Apple Mac Pro (MD878) (черный)</a></li>
-                        <li><a href="ProductPage.html">Монитор Apple Thunderbolt display 27 </a></li>
-                        <li><a href="ProductPage.html">USB накопитель SanDisk Ultra Dual 3.0 32Gb (черный) </a></li>
-                    </ul>
-                </li>
-                <li class="phones-menu"><a href="CategoryPage.php">Телефоны и смарт-часы</a>
-                    <ul>
-                        <li><a href="ProductPage.html">Мобильный телефон Highscreen Power Four (черный) </a></li>
-                        <li><a href="ProductPage.html">Мобильный телефон Asus ZenFone 2 Laser ZE500KL 16Gb (красный)</a></li>
-                        <li><a href="ProductPage.html">Мобильный телефон ZTE Blade S6 (серебристый)</a></li>
-                    </ul>
-                </li>
-                <li class="network-device-menu"><a href="CategoryPage.php">Сетевое оборудование</a>
-                    <ul>
-                        <li><a href="ProductPage.html">Маршрутизатор Mikrotik RB951G-2HnD</a></li>
-                        <li><a href="ProductPage.html">Маршрутизатор ASUS RT-N11P</a></li>
-                        <li><a href="ProductPage.html">Серверные шкафы 19'</a></li>
-                    </ul>
-                </li>
-                <li class="hardware-PC-menu"><a href="CategoryPage.php">Комплектующие для ПК</a>
-                    <ul>
-                        <li><a href="ProductPage.html">Процессор AMD FX-8320 OEM</a></li>
-                        <li><a href="ProductPage.html">Процессор Intel Core i7-5960X BOX</a></li>
-                        <li><a href="ProductPage.html">Процессор Intel Core i7-4960X OEM</a></li>
-                    </ul>
-                </li>
+                <?php for($i=0; $i<6; $i++):?>
+                    <li class="notebook-menu"><a href="CategoryPage.php">Ноутбуки и планшеты</a>
+                        <ul class="sub">
+                            <?php for($j=0; $j<6; $j++):?>
+                                <li><a href="ProductPage.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                            <?php endfor;?>
+                        </ul>
+                    </li>
+               <?php endfor;?>
             </ul>
         </div>
 
