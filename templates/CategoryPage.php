@@ -2,81 +2,81 @@
 <head>
     <meta charset="UTF-8">
     <link href="MainPageStyle.css" rel="stylesheet" type="text/css">
-    <title>Интернет-магазин цифровой и бытовой техники</title>
+    <title>РРЅС‚РµСЂРЅРµС‚-РјР°РіР°Р·РёРЅ С†РёС„СЂРѕРІРѕР№ Рё Р±С‹С‚РѕРІРѕР№ С‚РµС…РЅРёРєРё</title>
 </head>
 <body>
 <div class="header">
     <div class="layout-positioner">
         <div class="logo-layout-column">
-            <div class="logo"><a href="MainPage.html"><img alt="logo" src="Изображения/logo.png"></a></div>
+            <div class="logo"><a href="MainPage.html"><img alt="logo" src="РР·РѕР±СЂР°Р¶РµРЅРёСЏ/logo.png"></a></div>
         </div>
-        <div class="title-layout-column">Интернет магазин цифровой и бытовой техники</div>
+        <div class="title-layout-column">РРЅС‚РµСЂРЅРµС‚ РјР°РіР°Р·РёРЅ С†РёС„СЂРѕРІРѕР№ Рё Р±С‹С‚РѕРІРѕР№ С‚РµС…РЅРёРєРё</div>
     </div>
 </div>
 
 <div class="layout-positioner">
     <div class="main-menu">
-        <div class="catalog">Каталог товаров</div>
+        <div class="catalog">РљР°С‚Р°Р»РѕРі С‚РѕРІР°СЂРѕРІ</div>
         <ul>
-            <li class="notebook-menu"><a href="CategoryPage.html">Ноутбуки и планшеты</a>
+            <li class="notebook-menu"><a href="CategoryPage.html">РќРѕСѓС‚Р±СѓРєРё Рё РїР»Р°РЅС€РµС‚С‹</a>
                 <ul class="sub">
-                    <li><a href="ProductPage.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
-                    <li><a href="ProductPage.html">Ноутбук Asus X553MA-SX859H (черный)</a></li>
-                    <li><a href="ProductPage.html">Ноутбук HP 15-af003ur (ENERGY STAR) (черный)</a></li>
+                    <li><a href="ProductPage.html">РќРѕСѓС‚Р±СѓРє Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                    <li><a href="ProductPage.html">РќРѕСѓС‚Р±СѓРє Asus X553MA-SX859H (С‡РµСЂРЅС‹Р№)</a></li>
+                    <li><a href="ProductPage.html">РќРѕСѓС‚Р±СѓРє HP 15-af003ur (ENERGY STAR) (С‡РµСЂРЅС‹Р№)</a></li>
                 </ul>
             </li>
-            <li class="PC-menu"><a href="CategoryPage.html">Компьютеры и периферия</a>
+            <li class="PC-menu"><a href="CategoryPage.html">РљРѕРјРїСЊСЋС‚РµСЂС‹ Рё РїРµСЂРёС„РµСЂРёСЏ</a>
                 <ul>
-                    <li><a href="ProductPage.html">Системный блок Apple Mac Pro (MD878) (черный)</a></li>
-                    <li><a href="ProductPage.html">Монитор Apple Thunderbolt display 27 </a></li>
-                    <li><a href="ProductPage.html">USB накопитель SanDisk Ultra Dual 3.0 32Gb (черный) </a></li>
+                    <li><a href="ProductPage.html">РЎРёСЃС‚РµРјРЅС‹Р№ Р±Р»РѕРє Apple Mac Pro (MD878) (С‡РµСЂРЅС‹Р№)</a></li>
+                    <li><a href="ProductPage.html">РњРѕРЅРёС‚РѕСЂ Apple Thunderbolt display 27 </a></li>
+                    <li><a href="ProductPage.html">USB РЅР°РєРѕРїРёС‚РµР»СЊ SanDisk Ultra Dual 3.0 32Gb (С‡РµСЂРЅС‹Р№) </a></li>
                 </ul>
             </li>
-            <li class="phones-menu"><a href="CategoryPage.html">Телефоны и смарт-часы</a>
+            <li class="phones-menu"><a href="CategoryPage.html">РўРµР»РµС„РѕРЅС‹ Рё СЃРјР°СЂС‚-С‡Р°СЃС‹</a>
                 <ul>
-                    <li><a href="ProductPage.html">Мобильный телефон Highscreen Power Four (черный) </a></li>
-                    <li><a href="ProductPage.html">Мобильный телефон Asus ZenFone 2 Laser ZE500KL 16Gb (красный)</a></li>
-                    <li><a href="ProductPage.html">Мобильный телефон ZTE Blade S6 (серебристый)</a></li>
+                    <li><a href="ProductPage.html">РњРѕР±РёР»СЊРЅС‹Р№ С‚РµР»РµС„РѕРЅ Highscreen Power Four (С‡РµСЂРЅС‹Р№) </a></li>
+                    <li><a href="ProductPage.html">РњРѕР±РёР»СЊРЅС‹Р№ С‚РµР»РµС„РѕРЅ Asus ZenFone 2 Laser ZE500KL 16Gb (РєСЂР°СЃРЅС‹Р№)</a></li>
+                    <li><a href="ProductPage.html">РњРѕР±РёР»СЊРЅС‹Р№ С‚РµР»РµС„РѕРЅ ZTE Blade S6 (СЃРµСЂРµР±СЂРёСЃС‚С‹Р№)</a></li>
                 </ul>
             </li>
-            <li class="network-device-menu"><a href="CategoryPage.html">Сетевое оборудование</a>
+            <li class="network-device-menu"><a href="CategoryPage.html">РЎРµС‚РµРІРѕРµ РѕР±РѕСЂСѓРґРѕРІР°РЅРёРµ</a>
                 <ul>
-                    <li><a href="ProductPage.html">Маршрутизатор Mikrotik RB951G-2HnD</a></li>
-                    <li><a href="ProductPage.html">Маршрутизатор ASUS RT-N11P</a></li>
-                    <li><a href="ProductPage.html">Серверные шкафы 19'</a></li>
+                    <li><a href="ProductPage.html">РњР°СЂС€СЂСѓС‚РёР·Р°С‚РѕСЂ Mikrotik RB951G-2HnD</a></li>
+                    <li><a href="ProductPage.html">РњР°СЂС€СЂСѓС‚РёР·Р°С‚РѕСЂ ASUS RT-N11P</a></li>
+                    <li><a href="ProductPage.html">РЎРµСЂРІРµСЂРЅС‹Рµ С€РєР°С„С‹ 19'</a></li>
                 </ul>
             </li>
-            <li class="hardware-PC-menu"><a href="CategoryPage.html">Комплектующие для ПК</a>
+            <li class="hardware-PC-menu"><a href="CategoryPage.html">РљРѕРјРїР»РµРєС‚СѓСЋС‰РёРµ РґР»СЏ РџРљ</a>
                 <ul>
-                    <li><a href="ProductPage.html">Процессор AMD FX-8320 OEM</a></li>
-                    <li><a href="ProductPage.html">Процессор Intel Core i7-5960X BOX</a></li>
-                    <li><a href="ProductPage.html">Процессор Intel Core i7-4960X OEM</a></li>
+                    <li><a href="ProductPage.html">РџСЂРѕС†РµСЃСЃРѕСЂ AMD FX-8320 OEM</a></li>
+                    <li><a href="ProductPage.html">РџСЂРѕС†РµСЃСЃРѕСЂ Intel Core i7-5960X BOX</a></li>
+                    <li><a href="ProductPage.html">РџСЂРѕС†РµСЃСЃРѕСЂ Intel Core i7-4960X OEM</a></li>
                 </ul>
             </li>
         </ul>
     </div>
-    <div class="category_name popular">Популярное</div>
+    <div class="category_name popular">РџРѕРїСѓР»СЏСЂРЅРѕРµ</div>
     <div class="main-window">
         <div class="row">
             <div class="item">
                 <a href="ProductPage.html">
                     <img alt="Notebook" src="../Images/Notebook.jpg">
-                    <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-                    <div class="Price">21990р.</div>
+                    <div class="product-name">15.6" РќРѕСѓС‚Р±СѓРє Asus X553MA 90NB04X1-M25360 С‡РµСЂРЅС‹Р№</div>
+                    <div class="Price">21990СЂ.</div>
                 </a>
             </div>
             <div class="item">
                 <a href="ProductPage.html">
                     <img alt="AMD" src="../Images/AMD.jpg">
-                    <div class="product-name">Процессор AMD A4-4000 BOX</div>
-                    <div class="Price">2330р.</div>
+                    <div class="product-name">РџСЂРѕС†РµСЃСЃРѕСЂ AMD A4-4000 BOX</div>
+                    <div class="Price">2330СЂ.</div>
                 </a>
             </div>
             <div class="item">
                 <a href="ProductPage.html">
                     <img alt="Gigbyte" src="../Images/Gigabyte.jpg">
-                    <div class="product-name">Видеокарта GIGABYTE GeForce GTX 970 [GV-N970G1 GAMING-4GD 1.0]</div>
-                    <div class="Price">26990р.</div>
+                    <div class="product-name">Р’РёРґРµРѕРєР°СЂС‚Р° GIGABYTE GeForce GTX 970 [GV-N970G1 GAMING-4GD 1.0]</div>
+                    <div class="Price">26990СЂ.</div>
                 </a>
             </div>
         </div>
@@ -84,22 +84,22 @@
             <div class="item">
                 <a href="ProductPage.html">
                     <img alt="Meizu" src="../Images/Meizu.jpg">
-                    <div class="product-name">5" Смартфон Meizu M2 mini 16 Гб серый</div>
-                    <div class="Price">13390р.</div>
+                    <div class="product-name">5" РЎРјР°СЂС‚С„РѕРЅ Meizu M2 mini 16 Р“Р± СЃРµСЂС‹Р№</div>
+                    <div class="Price">13390СЂ.</div>
                 </a>
             </div>
             <div class="item">
                 <a href="ProductPage.html">
                     <img alt="WD" src="../Images/WD.jpg">
-                    <div class="product-name">Жесткий диск WD Caviar Blue WD10EZEX 1 Тб</div>
-                    <div class="Price">4550р.</div>
+                    <div class="product-name">Р–РµСЃС‚РєРёР№ РґРёСЃРє WD Caviar Blue WD10EZEX 1 РўР±</div>
+                    <div class="Price">4550СЂ.</div>
                 </a>
             </div>
             <div class="item">
                 <a href="ProductPage.html">
                     <img alt="Corpus" src="../Images/Corpus.jpg">
-                    <div class="product-name">Корпус Deepcool Tesseract SW</div>
-                    <div class="Price">3550р.</div>
+                    <div class="product-name">РљРѕСЂРїСѓСЃ Deepcool Tesseract SW</div>
+                    <div class="Price">3550СЂ.</div>
                 </a>
             </div>
         </div>
@@ -109,8 +109,8 @@
 <div class="footer">
     <div class="layout-positioner">
         <div class="contackts">
-            <p>Бухаркин Владимир</p>
-            <p>Группа ВР-09-15-11</p>
+            <p>Р‘СѓС…Р°СЂРєРёРЅ Р’Р»Р°РґРёРјРёСЂ</p>
+            <p>Р“СЂСѓРїРїР° Р’Р -09-15-11</p>
         </div>
     </div>
 </div>
