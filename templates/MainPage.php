@@ -31,6 +31,7 @@
 
 <div class=" central-part">
     <div class="layout-positioner">
+        <div class="HelloDiv">Добро пожаловать на главную страницу магазина цифровой техники!</div>
         <!-- menu -->
         <div class="main-menu">
             <div class="catalog">Каталог товаров</div>
@@ -38,39 +39,31 @@
                 <?php for($i=0; $i<6; $i++):?>
                     <li class="notebook-menu"><a href="CategoryPage.php">Ноутбуки и планшеты</a>
                         <ul class="sub">
-                            <?php for($j=0; $j<3; $j++):?>
+                            <?php for($j=0; $j<6; $j++):?>
                                 <li><a href="ProductPage.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
                             <?php endfor;?>
                         </ul>
                     </li>
-                <?php endfor;?>
+               <?php endfor;?>
             </ul>
         </div>
 
-        <!-- Items -->
+        <!-- Popular -->
         <div class="main-part">
-            <div class="category_name">Список товаров</div>
+            <div class="category_name popular">Популярное</div>
             <div class="main-window">
-
-
-                <div class="Product-itemTable">
-                    <?php for($i=0; $i<2; $i++): ?>
-                        <a href="ProductPage.php">
-                            <div class="Product-itemRow">
-                                <div class="product-Cell-image">
-                                    <div class="image-div">
-                                        <img alt="Notebook" src="../Images/30023889m.jpg">
-                                    </div>
-                                </div>
-                                <div class="product-name product-nameCell">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-                                <div class="Price PriceCell">21990р.</div>
-                                <div class="Car-Cell">
-                                    <div class="ToCar ToCarPP">+Купить</div>
-                                </div>
+                <?php for($i=0; $i<6; $i++): ?>
+                    <a href="ProductPage.php">
+                        <div class="item">
+                            <div class="main-image">
+                                <img alt="Notebook" src="../Images/30023889m.jpg">
                             </div>
-                        </a>
-                    <?php endfor;?>
-                </div>
+                            <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
+                            <div class="Price">21990р.</div>
+                            <div class="ToCar">+Купить</div>
+                        </div>
+                    </a>
+                <?php endfor;?>
             </div>
         </div>
     </div>

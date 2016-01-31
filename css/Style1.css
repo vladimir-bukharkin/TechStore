@@ -21,7 +21,7 @@ body {
     width: 175px;
     display: inline-block;
     float: left;
-    margin: 20px 30px 20px 0px;
+    margin: 20px 30px 20px 0;
 }
 
 .layout-positioner {
@@ -39,18 +39,18 @@ body {
     float: left;
     height: 60px;
     width: 52%;
-    margin: 30px 70px 0px 0px;
+    margin: 30px 70px 0 0;
     background-color: white;
     border-radius: 10px;
     position: relative;
-    box-shadow: inset 0px 0px 5px rgba(0,0,0,.3);
+    box-shadow: inset 0 0 5px rgba(0,0,0,.3);
 }
 
 .rightHeader {
     float: left;
     height: 60px;
     width: 300px;
-    margin: 30px 0px 0px 0px;
+    margin: 30px 0 0 0;
 }
 
 .inputSearch  {
@@ -80,7 +80,7 @@ body {
     border-radius: 10px;
     text-indent: 50px;
     line-height: 60px;
-    box-shadow: inset -1px -1px 0px rgba(0,0,0,.2);
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,.2);
     border: solid rgb(224,224,224) 1px;
     color: black;
     background: url("../Images/Car.png") no-repeat 15% 50%;
@@ -89,7 +89,7 @@ body {
 }
 
 .ToCar:hover {
-    box-shadow: inset 0 0 15px rgba(163,255,42,.5);
+    box-shadow: inset 0 0 15px rgba(163,255,42,1);
 }
 
 .headCar {
@@ -103,7 +103,7 @@ body {
     width: 90px;
     border: solid rgb(224,224,224) 1px;
     float: right;
-    padding: 7px 0px;
+    padding: 7px 0;
     text-align: center;
     color: black;
     font-size: small;
@@ -203,7 +203,7 @@ a {
 
 .central-part {
     background-color: rgb(243,243,243);
-    box-shadow: inset 0px 0px 10px rgba(0,0,0,.2);
+    box-shadow: inset 0 0 10px rgba(0,0,0,.2);
 }
 
 .main-window {
@@ -225,7 +225,7 @@ a {
     text-align: center;
     padding: 10px;
     height: 400px;
-    margin-right: 4px;
+    margin: 0 4px 6px 0;
     color: black;
 }
 
@@ -248,5 +248,112 @@ a {
     font-size: large;
     text-align: center;
     margin-bottom: 15px;
+}
+
+.Product-item {
+    width: 850px;
+    height: 150px;
+    margin-bottom: 5px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.Product-itemTable {
+    display: table;
+    border-collapse: collapse;
+}
+
+.Product-itemRow {
+    display: table-row;
+    border-bottom: solid lightgreen 1px;
+}
+
+.Product-itemRow:hover {
+    box-shadow: inset 0 2px 0 rgba(163,255,42,.4);
+}
+
+.product-Cell-image,.product-nameCell, .PriceCell, .Car-Cell   {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.image-div {
+    width: 150px;
+    height: 150px;
+}
+
+.ToCarPP {
+    text-indent: 80px;
+}
+
+.ProductID {
+    color: rgb(150, 150, 150);
+    margin: 20px 0;
+}
+
+.product-image {
+    height: 300px;
+    width: 300px;
+}
+
+.ProductPrice {
+    font-size: 30px;
+    border: dashed black;
+    text-align: center;
+    margin: 50px 0 10px 40px;
+    width: 175px;
+}
+
+.main-windowProd {
+    padding-left: 20px;
+    border: solid lightgray 1px;
+    width: 875px;
+    box-shadow: inset 0 -2px 2px rgba(0,0,0,.2);
+    background: white;
+    border-radius: 10px;
+}
+
+.inStock {
+    margin: 10px 0 0 40px;
+    height: 60px;
+    width: 175px;
+    text-align: center;
+}
+
+.Product-itemRowNoHover:hover {
+    box-shadow: none;
+}
+
+.PriceStockCar-div {
+    margin-left: 60px;
+}
+
+.descriptionH {
+    margin-top: 40px;
+    height: 30px;
+    width: 140px;
+    border-top: solid lightgreen 3px;
+    text-align: center;
+    padding-top: 20px;
+    border-right: solid lightgray 1px;
+    border-left: solid lightgray 1px;
+    background: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.product-tittle-name {
+    margin: 30px 0 0 0;
+    font-size: 20px;
+}
+
+.description {
+    width: 855px;
+    background: white;
+    padding: 20px;
+    border: solid 1px lightgray;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2);
 }
 
