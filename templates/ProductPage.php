@@ -50,22 +50,28 @@
 
         <!-- Items -->
         <div class="main-part">
-            <div class="category_name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
+            <div class="category_name">Страница товара</div>
+            <div class="product-tittle-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
             <div class="ProductID">Код товара 10046</div>
-            <div class="main-window">
+            <div class="main-window main-windowProd">
                 <div class="Product-itemTable">
-                            <div class="Product-itemRow">
-                                <div class="product-Cell-image">
-                                    <div class="product-image">
-                                        <img alt="Notebook" src="../Images/30023889m.jpg">
-                                    </div>
-                                </div>
-                                <div class="ProductPrice PriceCell">21990р.</div>
-                                <div class="Car-Cell">
-                                    <div class="ToCar ToCarPP">+Купить</div>
-                                </div>
+                    <div class="Product-itemRow Product-itemRowNoHover">
+                        <div class="product-Cell-image">
+                            <div class="product-image">
+                                <img alt="Notebook" src="../Images/30023889m.jpg">
                             </div>
+                        </div>
+                        <div class="PriceStockCar-div">
+                            <div class="ProductPrice">21990р.</div>
+                            <div class="inStock">Товар имеется на складе: 5шт.</div>
+                            <div class="ToCar ToCarPP">+Купить</div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="descriptionH">Описание</div>
+            <div class="description">
+                Какой-то текст
             </div>
         </div>
     </div>

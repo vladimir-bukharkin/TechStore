@@ -291,7 +291,7 @@ img {
 
 .ProductID {
     color: rgb(150, 150, 150);
-    margin-top: 10px;
+    margin: 20px 0;
 }
 
 .product-image {
@@ -300,5 +300,60 @@ img {
 }
 
 .ProductPrice {
-
+    font-size: 30px;
+    border: dashed black;
+    text-align: center;
+    margin: 50px 0 10px 40px;
+    width: 175px;
 }
+
+.main-windowProd {
+    padding-left: 20px;
+    border: solid lightgray 1px;
+    width: 875px;
+    box-shadow: inset 0 -2px 2px rgba(0,0,0,.2);
+    background: white;
+    border-radius: 10px;
+}
+
+.inStock {
+    margin: 10px 0 0 40px;
+    height: 60px;
+    width: 175px;
+    text-align: center;
+}
+
+.Product-itemRowNoHover:hover {
+    box-shadow: none;
+}
+
+.PriceStockCar-div {
+    margin-left: 60px;
+}
+
+.descriptionH {
+    margin-top: 40px;
+    height: 30px;
+    width: 140px;
+    border-top: solid lightgreen 3px;
+    text-align: center;
+    padding-top: 20px;
+    border-right: solid lightgray 1px;
+    border-left: solid lightgray 1px;
+    background: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.product-tittle-name {
+    margin: 30px 0 0 0;
+    font-size: 20px;
+}
+
+.description {
+    width: 855px;
+    background: white;
+    padding: 20px;
+    border: solid 1px lightgray;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .2);
+}
+
