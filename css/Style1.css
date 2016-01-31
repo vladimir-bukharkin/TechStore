@@ -284,3 +284,21 @@ img {
     width: 150px;
     height: 150px;
 }
+
+.ToCarPP {
+    text-indent: 80px;
+}
+
+.ProductID {
+    color: rgb(150, 150, 150);
+    margin-top: 10px;
+}
+
+.product-image {
+    height: 300px;
+    width: 300px;
+}
+
+.ProductPrice {
+
+}

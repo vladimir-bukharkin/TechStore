@@ -39,7 +39,7 @@
                     <li class="notebook-menu"><a href="CategoryPage.php">Ноутбуки и планшеты</a>
                         <ul class="sub">
                             <?php for($j=0; $j<3; $j++):?>
-                                <li><a href="ProductPage.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                                <li><a href="ProductPage.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
                             <?php endfor;?>
                         </ul>
                     </li>
@@ -55,7 +55,7 @@
 
                 <div class="Product-itemTable">
                     <?php for($i=0; $i<2; $i++): ?>
-                        <a href="ProductPage.html">
+                        <a href="ProductPage.php">
                             <div class="Product-itemRow">
                                 <div class="product-Cell-image">
                                     <div class="image-div">
