@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="fgsg"><div class="ToCar headCar">В корзину</div></a>
+            <a href="CarPage.php"><div class="ToCar headCar">В корзину</div></a>
             <div class="login_positioner">
                 <a href="fgsg"><div class="entry_button login_cell">Вход</div></a>
                 <a href="fgsg"><div class="registration_button login_cell">Регистрация</div></a>
@@ -65,7 +65,7 @@
                                 <div class="product-name product-nameCell">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
                                 <div class="Price PriceCell">21990р.</div>
                                 <div class="Car-Cell">
-                                    <div class="ToCar ToCarPP">+Купить</div>
+                                    <a href="CarPage.php"><div class="ToCar ToCarPP">+Купить</div></a>
                                 </div>
                             </div>
                         </a>
