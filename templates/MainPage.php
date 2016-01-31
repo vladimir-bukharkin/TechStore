@@ -10,7 +10,7 @@
     <div class="layout-positioner">
         <div class="lname">
             <div class="logo">
-                <a href="MainPage.php"><img alt="TS Магазин цифрофой техники" src="../Images/logo.png" width="100%" height="100%"></a>
+                <a href="MainPage.php"><img alt="TS Магазин цифрофой техники" src="../Images/logo.png"></a>
             </div>
         </div>
         <div class="search">
@@ -56,7 +56,7 @@
                     <a href="ProductPage.html">
                         <div class="item">
                             <div class="main-image">
-                                <img alt="Notebook" src="../Images/30023889m.jpg" width="100%" height="100%">
+                                <img alt="Notebook" src="../Images/30023889m.jpg">
                             </div>
                             <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
                             <div class="Price">21990р.</div>
