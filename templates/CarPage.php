@@ -31,47 +31,37 @@
 
 <div class=" central-part">
     <div class="layout-positioner">
-        <!-- menu -->
-        <div class="main-menu">
-            <div class="catalog">Каталог товаров</div>
-            <ul>
-                <?php for($i=0; $i<6; $i++):?>
-                    <li class="notebook-menu"><a href="CategoryPage.php">Ноутбуки и планшеты</a>
-                        <ul class="sub">
-                            <?php for($j=0; $j<3; $j++):?>
-                                <li><a href="ProductPage.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
-                            <?php endfor;?>
-                        </ul>
-                    </li>
-                <?php endfor;?>
-            </ul>
-        </div>
-
         <!-- Items -->
         <div class="main-part">
-            <div class="category_name">Список товаров</div>
-            <div class="main-window">
-
-
+            <div class="DescMyCar">Моя корзина</div>
+            <div class="main-windowCar">
                 <div class="Product-itemTable">
                     <?php for($i=0; $i<2; $i++): ?>
-                        <a href="ProductPage.php">
-                            <div class="Product-itemRow">
-                                <div class="product-Cell-image">
-                                    <div class="image-div">
-                                        <img alt="Notebook" src="../Images/30023889m.jpg">
-                                    </div>
-                                </div>
-                                <div class="product-name product-nameCell">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-                                <div class="Price PriceCell">21990р.</div>
-                                <div class="Car-Cell">
-                                    <div class="ToCar ToCarPP">+Купить</div>
+                        <div class="Product-itemRow">
+                            <div class="product-Cell-image">
+                                <div class="image-div image-divCar">
+                                    <img alt="Notebook" src="../Images/30023889m.jpg">
                                 </div>
                             </div>
-                        </a>
+                            <div class="product-name product-nameCell product-nameCar">
+                                15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный
+                                <div class="ProductID">Код товара:23523</div>
+                            </div>
+                            <div class="AmountCell">
+                                <button class="Product-delete">X</button>
+                                <div class="PriceDiv">21990р.</div>
+                                <div class="AmountField">
+                                    <button class="Min-button MPbutton" name="MinusBut">-</button>
+                                    <input class="amount-product" type="text" name="amount-product" value="1">
+                                    <button class="Plus-button MPbutton" name="PlusBut">+</button>
+                                </div>
+                            </div>
+                        </div>
                     <?php endfor;?>
                 </div>
+                <div class="InTotal">Итого:<div class="TotalPrice">2015р.</div></div>
             </div>
+            <input class="submitOffer" type="submit" name="SubmitOffer" value="Оформить заказ">
         </div>
     </div>
 </div>
