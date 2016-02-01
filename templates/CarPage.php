@@ -63,6 +63,23 @@
             </div>
             <input class="submitOffer" type="submit" name="SubmitOffer" value="Оформить заказ">
         </div>
+        <div class="main-part PopularPart">
+            <div class="category_name popular">Популярное</div>
+            <div class="Popular-Window-in-Car">
+                <?php for($i=0; $i<8; $i++): ?>
+                    <a href="ProductPage.php">
+                        <div class="item itemCar">
+                            <div class="main-image">
+                                <img alt="Notebook" src="../Images/30023889m.jpg">
+                            </div>
+                            <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
+                            <div class="Price">21990р.</div>
+                            <a href="CarPage.php"><div class="ToCar">+Купить</div></a>
+                        </div>
+                    </a>
+                <?php endfor;?>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -233,7 +233,7 @@ a {
     margin-left: 28px;
     height: 200px;
     width: 200px;
-    border: solid gray 1px;
+    border: solid lightgray 1px;
 }
 
 .product-name {
@@ -466,4 +466,13 @@ img {
 
 .submitOffer:hover {
     box-shadow: inset 0 0px 10px rgba(0, 0, 0, .2);
+}
+
+.PopularPart {
+    width: 1198px;
+}
+
+.Popular-Window-in-Car{
+    margin: 20px 0 20px 0;
+    padding-left: 40px;
 }
