@@ -40,7 +40,7 @@
                         <div class="Product-itemRow">
                             <div class="product-Cell-image">
                                 <div class="image-div image-divCar">
-                                    <img alt="Notebook" src="../Images/30023889m.jpg">
+                                    <img alt="Notebook" src="Images/30023889m.jpg">
                                 </div>
                             </div>
                             <div class="product-name product-nameCell product-nameCar">
@@ -49,11 +49,13 @@
                             </div>
                             <div class="AmountCell">
                                 <button class="Product-delete">X</button>
-                                <div class="PriceDiv">21990р.</div>
+                                <div class="PriceDiv"><?php echo $price?>р.</div>
                                 <div class="AmountField">
-                                    <button class="Min-button MPbutton" name="MinusBut">-</button>
-                                    <input class="amount-product" type="text" name="amount-product" value="1">
-                                    <button class="Plus-button MPbutton" name="PlusBut">+</button>
+
+                                        <button type="submit" class="Min-button MPbutton" name="MinusBut">-</button>
+                                        <input class="amount-product" type="text" name="amount-product" value="1">
+                                        <button type="submit" class="Plus-button MPbutton" name="PlusBut">+</button>
+
                                 </div>
                             </div>
                         </div>
@@ -70,10 +72,10 @@
                     <a href="Product_Page_Template.php">
                         <div class="item itemCar">
                             <div class="main-image">
-                                <img alt="Notebook" src="../Images/30023889m.jpg">
+                                <img alt="Notebook" src="Images/30023889m.jpg">
                             </div>
                             <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-                            <div class="Price">21990р.</div>
+                            <div class="Price"><?php echo $price?>р.</div>
                             <a href="Car_Page_Template.php"><div class="ToCar">+Купить</div></a>
                         </div>
                     </a>
