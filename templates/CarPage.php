@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
-    <link href="../css/Style1.css" rel="stylesheet" type="text/css">
+    <link href="../css/main.css" rel="stylesheet" type="text/css">
     <title>Интернет-магазин цифровой и бытовой техники</title>
 </head>
 <body>
@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="fgsg"><div class="ToCar headCar">В корзину</div></a>
+            <a href="CarPage.php"><div class="ToCar headCar">В корзину</div></a>
             <div class="login_positioner">
                 <a href="fgsg"><div class="entry_button login_cell">Вход</div></a>
                 <a href="fgsg"><div class="registration_button login_cell">Регистрация</div></a>
