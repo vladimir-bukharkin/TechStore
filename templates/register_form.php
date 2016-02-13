@@ -58,19 +58,43 @@
                 <div class="error-msg">
                     При заполнении формы возникли ошибки, пожалуйста проверьте правильность заполнения полей и нажмите "Войти"!
                 </div>
-                <form action="../login.php" method="post">
+                <form action="../register.php" method="post">
                     <div class="login-row">
                         <label for="username">Имя пользователя<span class="required">*</span></label>
                         <input type="text" name="username" id="username" value="">
                     </div>
                     <div class="login-row">
+                        <label for="e-mail">Эл.почта<span class="required">*</span></label>
+                        <input type="text" name="e-mail" id="e-mail" value="">
+                    </div>
+                    <div class="login-row">
                         <label for="password">Пароль<span class="required">*</span></label>
                         <input type="password" name="password" id="password">
                     </div>
+                    <div class="login-row">
+                        <label for="confirm-password">Подтверждение пароля<span class="required">*</span></label>
+                        <input type="password" name="confirm-password" id="password">
+                    </div>
+
+                    <div class="login-row">
+                        <label class="registration-gender">Ваш пол:</label>
+                        <input type="radio" name="gender" id="gender_Male" value="M">
+                        <label for="gender_Male">Мужской</label>
+                        <input type="radio" name="gender" id="gender_Female" value="F">
+                        <label for="gender_Female">Женский</label>
+                    </div>
+                    <div class="login-row">
+                        <label></label>
+                        <input type="checkbox" name="newsletter" id="newsletter" value="1">
+                        <label for="newsletter">новостную рассылку</label>
+                    </div>
+
                     <div class="login-row bottom-login">
                         <input type="submit" name="login" id="login" value="Войти">
                         <input type="reset" name="reset" id="reset" value="Очистить">
                     </div>
+
+
                     <div class="login-row">
                         Еще не зарегистрированы? <a href="./register.php">Зарегистрируйтесь!</a>
                     </div>

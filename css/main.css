@@ -557,3 +557,17 @@ img {
 .login_form input[type="submit"], .login_form input[type="reset"] {
     width: 125px;
 }
+
+
+/* register_form */
+
+.login_form input[type="radio"] + label, .login_form input[type="checkbox"] + label {
+    width: auto;
+    padding-left: 0px;
+}
+
+.registration-gender {
+    display: block;
+    border: solid gray;
+    width: 100px;
+}

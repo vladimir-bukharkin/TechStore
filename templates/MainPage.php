@@ -22,7 +22,7 @@
         <div class="rightHeader">
             <a href="CarPage.php"><div class="ToCar headCar">В корзину</div></a>
             <div class="login_positioner">
-                <a href="fgsg"><div class="entry_button login_cell">Вход</div></a>
+                <a href="login_form.php"><div class="entry_button login_cell">Вход</div></a>
                 <a href="fgsg"><div class="registration_button login_cell">Регистрация</div></a>
             </div>
         </div>
