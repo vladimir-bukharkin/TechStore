@@ -555,7 +555,7 @@ img {
 }
 
 .login_form input[type="submit"], .login_form input[type="reset"] {
-    width: 125px;
+    width: 180px;
 }
 
 
@@ -568,6 +568,6 @@ img {
 
 .registration-gender {
     display: block;
-    border: solid gray;
     width: 100px;
+    float: left;
 }

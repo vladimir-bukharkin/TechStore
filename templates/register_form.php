@@ -53,10 +53,10 @@
         <div class="main-part">
             <div class="login_form">
                 <div class="login-row page-tittle">
-                    Войти в личный кабинет
+                    Регистрация личного кабинета
                 </div>
                 <div class="error-msg">
-                    При заполнении формы возникли ошибки, пожалуйста проверьте правильность заполнения полей и нажмите "Войти"!
+                    При заполнении формы возникли ошибки, пожалуйста проверьте правильность заполнения полей и нажмите "Зарегистрироваться"!
                 </div>
                 <form action="../register.php" method="post">
                     <div class="login-row">
@@ -77,26 +77,23 @@
                     </div>
 
                     <div class="login-row">
-                        <label class="registration-gender">Ваш пол:</label>
+                        <div class="registration-gender">Ваш пол:</div>
                         <input type="radio" name="gender" id="gender_Male" value="M">
                         <label for="gender_Male">Мужской</label>
                         <input type="radio" name="gender" id="gender_Female" value="F">
                         <label for="gender_Female">Женский</label>
                     </div>
                     <div class="login-row">
-                        <label></label>
                         <input type="checkbox" name="newsletter" id="newsletter" value="1">
-                        <label for="newsletter">новостную рассылку</label>
+                        <label for="newsletter">Я хочу получать новостную рассылку</label>
                     </div>
 
                     <div class="login-row bottom-login">
-                        <input type="submit" name="login" id="login" value="Войти">
+                        <input type="submit" name="login" id="login" value="Зарегистрироваться">
                         <input type="reset" name="reset" id="reset" value="Очистить">
                     </div>
-
-
                     <div class="login-row">
-                        Еще не зарегистрированы? <a href="./register.php">Зарегистрируйтесь!</a>
+                        Уже зарегесрированы? <a href="./register.php">Войти в личный кабинет!</a>
                     </div>
                 </form>
             </div>
