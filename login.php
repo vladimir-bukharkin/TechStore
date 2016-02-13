@@ -12,8 +12,12 @@ function main(){
 
     session_start();
 
-    if(true){
+    if(is_current_user()) {
         redirect('./');
+    }
+
+    if(is_postback()){
+
     }
 
 

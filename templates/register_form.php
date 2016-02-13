@@ -89,7 +89,7 @@
                     </div>
 
                     <div class="login-row bottom-login">
-                        <input type="submit" name="login" id="login" value="Зарегистрироваться">
+                        <input type="submit" name="register" id="register" value="Зарегистрироваться">
                         <input type="reset" name="reset" id="reset" value="Очистить">
                     </div>
                     <div class="login-row">

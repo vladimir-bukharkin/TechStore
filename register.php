@@ -1,7 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vladimir
- * Date: 13.02.2016
- * Time: 21:49
- */
+
+require('lib/common.php');
+
+/*Проверяем: отправлена ли форма */
+function is_postback() {
+    return isset($_POST ['register']);
+}

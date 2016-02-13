@@ -4,7 +4,9 @@ require('lib/common.php');
 
 function main() {
     session_start();
-    render('MainPage');
+
+    /*Выводим резльтирующую страницу */
+    render('Main_Page_Template', array());
 }
 
 main();
