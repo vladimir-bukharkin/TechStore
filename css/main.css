@@ -506,12 +506,13 @@ img {
 
 .login_form input[type="submit"]:hover,
 .login_form input[type="reset"]:hover {
-    box-shadow: inset 0 0px 10px rgba(0, 0, 0, .2);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, .2);
     transition: all 0.5s ease;
 }
 
 .login_form {
     width: 400px;
+    margin-bottom: 50px;
 }
 
 .login-row {

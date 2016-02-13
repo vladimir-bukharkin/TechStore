@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
     <title>Интернет-магазин цифровой и бытовой техники</title>
 </head>
 
@@ -96,6 +96,21 @@
                         Уже зарегесрированы? <a href="./register.php">Войти в личный кабинет!</a>
                     </div>
                 </form>
+            </div>
+            <div class="category_name popular">Популярное</div>
+            <div class="main-window">
+                <?php for($i=0; $i<6; $i++): ?>
+                    <a href="Product_Page_Template.php">
+                        <div class="item">
+                            <div class="main-image">
+                                <img alt="Notebook" src="Images/30023889m.jpg">
+                            </div>
+                            <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
+                            <div class="Price">21990р.</div>
+                            <a href="Car_Page_Template.php"><div class="ToCar">+Купить</div></a>
+                        </div>
+                    </a>
+                <?php endfor;?>
             </div>
         </div>
     </div>
