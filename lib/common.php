@@ -226,5 +226,19 @@ function register_user(&$user, &$errors)
     read_string($_POST, 'confirm-password', $user, $errors, 2, 64, true);
     read_bool($_POST, 'newsletter', $user, $errors, '1', false, false);
     read_list($_POST, 'gender', $user, $errors, array('M', 'F'), false);
+
+    // пароль и подтверждение пароля должны совпадать
+
+    if($user['password'] != $user['confirm-password'] &&
+        !is_error($errors, 'password') &&
+        !is_error($errors, 'confirm-password')) {
+        add_error($errors, 'password and confirm-password is not identical');
+    }
+
+    if (has_errors($errors)) {
+        return false;
+    }
+
+    return true;
 }
 

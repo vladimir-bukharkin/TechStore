@@ -10,7 +10,7 @@
     <div class="layout-positioner">
         <div class="lname">
             <div class="logo">
-                <a href="Main_Page_Template.php"><img alt="TS Магазин цифрофой техники" src="../Images/logo.png"></a>
+                <a href="Main_Page_Template.php"><img alt="TS Магазин цифрофой техники" src="Images/logo.png"></a>
             </div>
         </div>
         <div class="search">
