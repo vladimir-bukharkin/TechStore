@@ -10,7 +10,7 @@
     <div class="layout-positioner">
         <div class="lname">
             <div class="logo">
-                <a href="MainPage.php"><img alt="TS Магазин цифрофой техники" src="../Images/logo.png"></a>
+                <a href="Main_Page_Template.php"><img alt="TS Магазин цифрофой техники" src="../Images/logo.png"></a>
             </div>
         </div>
         <div class="search">
@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="CarPage.php"><div class="ToCar headCar">В корзину</div></a>
+            <a href="Car_Page_Template.php"><div class="ToCar headCar">В корзину</div></a>
             <div class="login_positioner">
                 <a href="login_form.php"><div class="entry_button login_cell">Вход</div></a>
                 <a href="fgsg"><div class="registration_button login_cell">Регистрация</div></a>
@@ -67,14 +67,14 @@
             <div class="category_name popular">Популярное</div>
             <div class="Popular-Window-in-Car">
                 <?php for($i=0; $i<8; $i++): ?>
-                    <a href="ProductPage.php">
+                    <a href="Product_Page_Template.php">
                         <div class="item itemCar">
                             <div class="main-image">
                                 <img alt="Notebook" src="../Images/30023889m.jpg">
                             </div>
                             <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
                             <div class="Price">21990р.</div>
-                            <a href="CarPage.php"><div class="ToCar">+Купить</div></a>
+                            <a href="Car_Page_Template.php"><div class="ToCar">+Купить</div></a>
                         </div>
                     </a>
                 <?php endfor;?>
