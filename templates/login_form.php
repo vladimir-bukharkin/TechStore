@@ -55,10 +55,12 @@
                 <div class="login-row page-tittle">
                     Войти в личный кабинет
                 </div>
-                <div class="error-msg">
-                    При заполнении формы возникли ошибки, пожалуйста проверьте правильность заполнения полей и нажмите "Войти"!
-                </div>
-                <form action="../login.php" method="post">
+                <?php if(has_errors($errors)) :?>
+                    <div class="error-msg">
+                        При заполнении формы возникли ошибки, пожалуйста проверьте правильность заполнения полей и нажмите "Войти"!
+                    </div>
+                <?php endif ?>
+                <form action="login.php" method="post">
                     <div class="login-row">
                         <label for="username">Имя пользователя<span class="required">*</span></label>
                         <input type="text" name="username" id="username" value="">
@@ -88,6 +90,7 @@
             <p>Группа ВР-09-15-11</p>
         </div>
     </div>
+    <?php foreach($errors as $a) foreach($a as $b) {echo $b;} ?>
 </div>
 
 </body>

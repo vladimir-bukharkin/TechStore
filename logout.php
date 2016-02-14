@@ -1,7 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vladimir
- * Date: 13.02.2016
- * Time: 21:48
- */
+
+require('lib/common.php');
+
+function main()
+{
+    // создаем сессию
+    session_start();
+
+    // выполняем выход из системы и перенаправляем пользователя на главную страницу
+    logout_user();
+    redirect('./');
+}
+
+main();

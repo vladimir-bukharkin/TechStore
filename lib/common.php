@@ -187,19 +187,27 @@ function read_bool($form, $field, &$obj, &$errors, $true, $is_required, $default
  * случае
  */
 
-function login_user(&$user, &$errors)
+function login_user($dbh, &$user, &$errors)
 {
     $user = array();
     $errors = empty_errors();
 
-    read_string($_POST, 'username', $user, $errors, 3, 20, true);
+    // считываем строки из запроса
+    read_string($_POST, 'username', $user, $errors, 2, 64, true);
     read_string($_POST, 'password', $user, $errors, 6, 20, true);
 
-    if (has_errors($errors)) {
+    if (has_errors($errors))
         return false;
-    }
 
-    store_current_user_id(456);
+
+    // форма передана правильно, ищем пользователя и проверяем пароль
+    $db_user = db_user_find_by_login($dbh, $user['username']);
+    // смотрим, есть ли такой пользователь и правильно ли передан пароль
+    if ($db_user == null || crypt($db_user['password'], $user['password']) !== crypt($user['password'], $db_user['password']))
+        return add_error($errors, 'password', 'invalid');
+
+    // пользователь ввел правильные имя и пароль, запоминаем его в сессии
+    store_current_user_id($db_user['id']);
     return true;
 }
 
@@ -242,3 +250,175 @@ function register_user(&$user, &$errors)
     return true;
 }
 
+/* ****************************************************************************
+ * Список пользователей в базе данных
+ */
+
+/*
+ * Выполняет подключение к базе данных
+ */
+
+
+function db_connect()
+{
+    $dbh = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+    if (mysqli_connect_errno()) {
+        db_handle_error($dbh);
+    }
+
+    mysqli_set_charset($dbh, "utf8");
+    return $dbh;
+}
+
+/*
+ * Закрывает подключение к базе данных
+ */
+function db_close($dbh)
+{
+    mysqli_close($dbh);
+}
+
+/*
+ * Обработка ошибок подключения к базе данных
+ */
+function db_handle_error($dbh)
+{
+    $code = '@unknown-error';
+    $message = '';
+    if (mysqli_connect_error()) {
+        $code = '@connect-error';
+        $message = mysqli_connect_error();
+    }
+
+    if (mysqli_error($dbh)) {
+        $code = '@query-error';
+        $message =mysqli_error($dbh);
+    }
+
+    render('error', array(
+        'code' => $code, 'message' => $message,
+    ));
+    exit;
+}
+
+
+/*
+ * Извлекает из базы данных список пользователей
+ */
+function db_user_find_all($dbh)
+{
+    $query = 'SELECT * FROM users';
+    $result = array();
+
+    // выполняем запрос к базе данных
+    $qr = mysqli_query($dbh, $query, MYSQLI_STORE_RESULT);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата
+    mysqli_free_result($qr);
+
+    return $result;
+}
+
+/*
+ * Выполняет поиск в базе данных и загрузку пользователя с указанным id
+ */
+function db_user_find_by_id($dbh, $id)
+{
+    $query = 'SELECT * FROM users WHERE id=?';
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 's', $id);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // извлекаем результирующую строку
+    $result = mysqli_fetch_assoc($qr);
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+/*
+ * Выполняет поиск в базе данных и загрузку пользователя с указанным логином
+ * (логином считаем адрес электронной почты и ник пользователя)
+ */
+function db_user_find_by_login($dbh, $login)
+{
+    $query = 'SELECT * FROM users WHERE email=? OR nickname=?';
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 'ss', $login, $login);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // извлекаем результирующую строку
+    $result = mysqli_fetch_assoc($qr);
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+/*
+ * Вставляет в базу данных строку с информацией о пользователе, возвращает массив
+ * с данными пользователя и его id в базе данных
+ */
+function db_user_insert($dbh, $user)
+{
+    $query = 'INSERT INTO users(nickname,email,password,fullname,gender,newsletter) VALUES(?,?,?,?,?,?)';
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 'sssssi',
+        $user['nickname'], $user['email'], $user['password'],
+        $user['fullname'], $user['gender'], $user['newsletter']);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем идентификатор вставленной записи
+    $user['id'] = mysqli_insert_id($dbh);
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_stmt_close($stmt);
+
+    return $user;
+}

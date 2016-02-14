@@ -22,4 +22,4 @@ define('DB_PASSWORD', 'asdffz');
 /*
  * Имя базы данных на сервере
  */
-define('DB_NAME', 'TechStore_BD');
+define('DB_NAME', 'techstorebd');
