@@ -12,7 +12,7 @@
     <div class="layout-positioner">
         <div class="lname">
             <div class="logo">
-                <a href="Main_Page_Template.php"><img alt="TS Магазин цифрофой техники" src="Images/logo.png"></a>
+                <a href="./"><img alt="TS Магазин цифрофой техники" src="Images/logo.png"></a>
             </div>
         </div>
         <div class="search">
@@ -22,10 +22,10 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="Car_Page_Template.php"><div class="ToCar headCar">В корзину</div></a>
+            <a href="car.php"><div class="ToCar headCar">В корзину</div></a>
             <div class="login_positioner">
-                <a href="fgsg"><div class="entry_button login_cell">Вход</div></a>
-                <a href="fgsg"><div class="registration_button login_cell">Регистрация</div></a>
+                <a href="login.php"><div class="entry_button login_cell">Вход</div></a>
+                <a href="register.php"><div class="registration_button login_cell">Регистрация</div></a>
             </div>
         </div>
     </div>

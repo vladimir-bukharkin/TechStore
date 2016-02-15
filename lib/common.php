@@ -98,37 +98,15 @@ function add_error(&$errors, $field, $description)
  * Проверяет корректность строки в форме, если строка корректна, копирует ее в $obj
  * и возвращает true; false и заполненный массив ошибок, если нет
  */
-function read_string($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null, $trim=true) {
-    $obj[$field]=$default;
-    if(!isset($form[$field])) {
+function read_string($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null, $trim=true)
+{
+    $obj[$field] = $default;
+    if (!isset($form[$field])) {
         return $is_required ? add_error($errors, $field, 'required') : true;
     }
 
     $value = $trim ? trim($form[$field]) : $form[$field];
-    if($value == '' && $is_required) {
-        return add_error($errors, $field, 'required');
-    }
 
-    if(strlen($value) > $max) {
-        return add_error($errors, $field, 'too-long');
-    }
-
-    if (strlen($value) < $min) {
-        return add_error($errors, $field, 'too-long');
-    }
-
-    $obj[$field] = $value;
-    return true;
-}
-
-function read_email($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null, $trim=true)
-{
-    $obj[$field] = $default;
-    if(!isset($form[$field])) {
-        return $is_required ? add_error($errors, $field, 'required') : true;
-    }
-
-    $value = trim($form[$field]);
 
     if (strlen($value) < $min)
         return add_error($errors, $field, 'too-short');
@@ -136,9 +114,27 @@ function read_email($form, $field, &$obj, &$errors, $min, $max, $is_required, $d
     if (strlen($value) > $max)
         return add_error($errors, $field, 'too-long');
 
-    if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
-        return add_error($errors, $field, 'not validate e-mail');
+    $obj[$field] = $value;
+    return true;
+}
+
+function read_email($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null)
+{
+    $obj[$field] = $default;
+    if (!isset($form[$field])) {
+        return $is_required ? add_error($errors, $field, 'required') : true;
     }
+
+    $value = trim($form[$field]);
+    if (strlen($value) < $min)
+        return add_error($errors, $field, 'too-short');
+
+    if (strlen($value) > $max)
+        return add_error($errors, $field, 'too-long');
+
+    // проверяем, что в строке задан адрес электронной почты
+    if (!filter_var($value, FILTER_VALIDATE_EMAIL))
+        return add_error($errors, $field, 'invalid');
 
     $obj[$field] = $value;
     return true;
@@ -203,7 +199,7 @@ function login_user($dbh, &$user, &$errors)
     // форма передана правильно, ищем пользователя и проверяем пароль
     $db_user = db_user_find_by_login($dbh, $user['username']);
     // смотрим, есть ли такой пользователь и правильно ли передан пароль
-    if ($db_user == null || crypt($db_user['password'], $user['password']) !== crypt($user['password'], $db_user['password']))
+    if ($db_user == null || $db_user['password'] !== crypt($user['password'], $db_user['password']))
         return add_error($errors, 'password', 'invalid');
 
     // пользователь ввел правильные имя и пароль, запоминаем его в сессии
@@ -223,30 +219,39 @@ function logout_user()
  * случае
  */
 
-function register_user(&$user, &$errors)
+function register_user($dbh, &$user, &$errors)
 {
     $user = array();
     $errors = empty_errors();
 
-    read_string($_POST, 'username', $user, $errors, 3, 64, true);
-    read_string($_POST, 'password', $user, $errors, 6, 20, true);
+    // считываем строки из запроса
+    read_string($_POST, 'username', $user, $errors, 2, 64, true);
     read_email($_POST, 'e-mail', $user, $errors, 2, 64, true);
-    read_string($_POST, 'confirm-password', $user, $errors, 2, 64, true);
-    read_bool($_POST, 'newsletter', $user, $errors, '1', false, false);
+    read_string($_POST, 'password', $user, $errors, 6, 24, true);
+    read_string($_POST, 'confirm-password', $user, $errors, 6, 24, true);
     read_list($_POST, 'gender', $user, $errors, array('M', 'F'), false);
+    read_bool($_POST, 'newsletter', $user, $errors, '1', false, false);
 
     // пароль и подтверждение пароля должны совпадать
-
-    if($user['password'] != $user['confirm-password'] &&
-        !is_error($errors, 'password') &&
-        !is_error($errors, 'confirm-password')) {
-        add_error($errors, 'password and confirm-password is not identical');
+    if (!is_error($errors, 'password') &&
+        !is_error($errors, 'confirm-password') &&
+        $user['password'] != $user['confirm-password']) {
+        $errors['fields'][] = 'password';
+        add_error($errors, 'confirm-password', 'dont-match');
     }
 
-    if (has_errors($errors)) {
+    if (has_errors($errors))
         return false;
-    }
 
+    // защищаем пароль пользователя
+    $user['password'] = crypt($user['password']);
+    unset($user['password_confirmation']);
+
+    // форма передана правильно, сохраняем пользователя в базу данных
+    $db_user = db_user_insert($dbh, $user);
+
+    // автоматически логиним пользователя после регистрации, запоминая его в сессии
+    store_current_user_id($db_user['id']);
     return true;
 }
 
@@ -399,16 +404,15 @@ function db_user_find_by_login($dbh, $login)
  */
 function db_user_insert($dbh, $user)
 {
-    $query = 'INSERT INTO users(nickname,email,password,fullname,gender,newsletter) VALUES(?,?,?,?,?,?)';
+    $query = 'INSERT INTO users(nickname,email,password,gender,newsletter) VALUES(?,?,?,?,?)';
 
     // подготовливаем запрос для выполнения
     $stmt = mysqli_prepare($dbh, $query);
     if ($stmt === false)
         db_handle_error($dbh);
 
-    mysqli_stmt_bind_param($stmt, 'sssssi',
-        $user['nickname'], $user['email'], $user['password'],
-        $user['fullname'], $user['gender'], $user['newsletter']);
+    mysqli_stmt_bind_param($stmt, 'ssssi',
+        $user['username'], $user['e-mail'], $user['password'], $user['gender'], $user['newsletter']);
 
     // выполняем запрос и получаем результат
     if (mysqli_stmt_execute($stmt) === false)
