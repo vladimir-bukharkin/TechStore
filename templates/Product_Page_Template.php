@@ -20,11 +20,18 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="Car_Page_Template.php"><div class="ToCar headCar">В корзину</div></a>
-            <div class="login_positioner">
-                <a href="login.php"><div class="entry_button login_cell">Вход</div></a>
-                <a href="register.php"><div class="registration_button login_cell">Регистрация</div></a>
-            </div>
+            <a href="car.php"><div class="ToCar headCar">В корзину</div></a>
+            <?php if(is_current_user()) { ?>
+                <div class="login_positioner">
+                    Вы вошли в систему как: <br><div class="user"><?php echo $_SESSION['username']; ?></div>
+                    <a href="logout.php"><div class="logout_button login_cell">Выход</div></a>
+                </div>
+            <?php } else { ?>
+                <div class="login_positioner entry-positioner">
+                    <a href="login.php"><div class="entry_button login_cell">Вход</div></a>
+                    <a href="register.php"><div class="registration_button login_cell">Регистрация</div></a>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>

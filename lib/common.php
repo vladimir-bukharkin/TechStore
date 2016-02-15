@@ -42,6 +42,12 @@ function store_current_user_id($id)
     $_SESSION['user_id'] = $id;
 }
 
+/*Функция сохранения имени пользователя в сессии*/
+function store_current_user_name($name)
+{
+    $_SESSION['username'] = $name;
+}
+
 /*Сбрасывает индификатор пользователя*/
 function reset_current_user_id()
 {
@@ -204,6 +210,7 @@ function login_user($dbh, &$user, &$errors)
 
     // пользователь ввел правильные имя и пароль, запоминаем его в сессии
     store_current_user_id($db_user['id']);
+    store_current_user_name($user['username']);
     return true;
 }
 
