@@ -20,7 +20,9 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="car.php"><div class="ToCar headCar">В корзину</div></a>
+            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                <div class="ToCar headCar">В корзину</div>
+            </a>
             <?php if(is_current_user()) { ?>
                 <div class="login_positioner">
                     Вы вошли в систему как: <br><div class="user"><?php echo $_SESSION['username']; ?></div>
@@ -43,10 +45,10 @@
             <div class="catalog">Каталог товаров</div>
             <ul>
                 <?php for($i=0; $i<6; $i++):?>
-                    <li class="notebook-menu"><a href="Category_Page_Template.php">Ноутбуки и планшеты</a>
+                    <li class="notebook-menu"><a href="category.php">Ноутбуки и планшеты</a>
                         <ul class="sub">
                             <?php for($j=0; $j<3; $j++):?>
-                                <li><a href="Product_Page_Template.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                                <li><a href="product.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
                             <?php endfor;?>
                         </ul>
                     </li>
@@ -66,13 +68,15 @@
                             <div class="Product-itemRow">
                                 <div class="product-Cell-image">
                                     <div class="image-div">
-                                        <img alt="Notebook" src="../Images/30023889m.jpg">
+                                        <img alt="Notebook" src="Images/30023889m.jpg">
                                     </div>
                                 </div>
                                 <div class="product-name product-nameCell">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
                                 <div class="Price PriceCell">21990р.</div>
                                 <div class="Car-Cell">
-                                    <a href="Car_Page_Template.php"><div class="ToCar ToCarPP">+Купить</div></a>
+                                    <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                                        <div class="ToCar ToCarPP">+Купить</div>
+                                    </a>
                                 </div>
                             </div>
                         </a>

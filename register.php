@@ -31,7 +31,7 @@ function main()
 
         if ($post_result) {
             // перенаправляем на главную
-            redirect('./');
+            render('sucsess_register', array());
         } else {
             // информация о пользователе заполнена неправильно, выведем страницу с ошибками
             render('register_form', array(

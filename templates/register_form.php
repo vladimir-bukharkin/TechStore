@@ -22,7 +22,9 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="car.php"><div class="ToCar headCar">В корзину</div></a>
+            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                <div class="ToCar headCar">В корзину</div>
+            </a>
             <?php if(is_current_user()) { ?>
                 <div class="login_positioner">
                     Вы вошли в систему как: <br><div class="user"><?php echo $_SESSION['username']; ?></div>

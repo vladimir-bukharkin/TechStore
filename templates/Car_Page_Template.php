@@ -20,7 +20,9 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="car.php"><div class="ToCar headCar">В корзину</div></a>
+            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                <div class="ToCar headCar">В корзину</div>
+            </a>
             <?php if(is_current_user()) { ?>
                 <div class="login_positioner">
                     Вы вошли в систему как: <br><div class="user"><?php echo $_SESSION['username']; ?></div>
@@ -51,7 +53,7 @@
                                 </div>
                             </div>
                             <div class="product-name product-nameCell product-nameCar">
-                                15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный
+                                <a href="product.php">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</a>
                                 <div class="ProductID">Код товара:23523</div>
                             </div>
                             <div class="AmountCell">
@@ -76,14 +78,16 @@
             <div class="category_name popular">Популярное</div>
             <div class="Popular-Window-in-Car">
                 <?php for($i=0; $i<8; $i++): ?>
-                    <a href="Product_Page_Template.php">
+                    <a href="product.php">
                         <div class="item itemCar">
                             <div class="main-image">
                                 <img alt="Notebook" src="Images/30023889m.jpg">
                             </div>
                             <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
                             <div class="Price"><?php echo $price?>р.</div>
-                            <a href="Car_Page_Template.php"><div class="ToCar">+Купить</div></a>
+                            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                                <div class="ToCar">+Купить</div>
+                            </a>
                         </div>
                     </a>
                 <?php endfor;?>

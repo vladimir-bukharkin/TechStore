@@ -22,7 +22,9 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="car.php"><div class="ToCar headCar">В корзину</div></a>
+            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                <div class="ToCar headCar">В корзину</div>
+            </a>
             <?php if(is_current_user()) { ?>
                 <div class="login_positioner">
                     Вы вошли в систему как: <br><div class="user"><?php echo $_SESSION['username']; ?></div>
@@ -45,10 +47,10 @@
             <div class="catalog">Каталог товаров</div>
             <ul>
                 <?php for($i=0; $i<6; $i++):?>
-                    <li class="notebook-menu"><a href="Category_Page_Template.php">Ноутбуки и планшеты</a>
+                    <li class="notebook-menu"><a href="category.php">Ноутбуки и планшеты</a>
                         <ul class="sub">
                             <?php for($j=0; $j<3; $j++):?>
-                                <li><a href="ProductPage.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                                <li><a href="product.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
                             <?php endfor;?>
                         </ul>
                     </li>

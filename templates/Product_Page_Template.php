@@ -10,7 +10,7 @@
     <div class="layout-positioner">
         <div class="lname">
             <div class="logo">
-                <a href="Main_Page_Template.php"><img alt="TS Магазин цифрофой техники" src="Images/logo.png"></a>
+                <a href="index.php"><img alt="TS Магазин цифрофой техники" src="Images/logo.png"></a>
             </div>
         </div>
         <div class="search">
@@ -20,7 +20,9 @@
             </form>
         </div>
         <div class="rightHeader">
-            <a href="car.php"><div class="ToCar headCar">В корзину</div></a>
+            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                <div class="ToCar headCar">В корзину</div>
+            </a>
             <?php if(is_current_user()) { ?>
                 <div class="login_positioner">
                     Вы вошли в систему как: <br><div class="user"><?php echo $_SESSION['username']; ?></div>
@@ -38,16 +40,16 @@
 
 <div class=" central-part">
     <div class="layout-positioner">
-        <div class="link-line"><a href="Main_Page_Template.php">Главная страница</a> > <a href="Category_Page_Template.php">Категория</a> > Ноутбук Asus</div>
+        <div class="link-line"><a href="./.php">Главная страница</a> > <a href="category.php">Категория</a> > Ноутбук Asus</div>
         <!-- menu -->
         <div class="main-menu">
             <div class="catalog">Каталог товаров</div>
             <ul>
                 <?php for($i=0; $i<6; $i++):?>
-                    <li class="notebook-menu"><a href="Category_Page_Template.php">Ноутбуки и планшеты</a>
+                    <li class="notebook-menu"><a href="category.php">Ноутбуки и планшеты</a>
                         <ul class="sub">
                             <?php for($j=0; $j<3; $j++):?>
-                                <li><a href="ProductPage.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                                <li><a href="product.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
                             <?php endfor;?>
                         </ul>
                     </li>
@@ -65,13 +67,15 @@
                     <div class="Product-itemRow Product-itemRowNoHover">
                         <div class="product-Cell-image">
                             <div class="product-image">
-                                <img alt="Notebook" src="../Images/30023889m.jpg">
+                                <img alt="Notebook" src="Images/30023889m.jpg">
                             </div>
                         </div>
                         <div class="PriceStockCar-div">
                             <div class="ProductPrice">21990р.</div>
                             <div class="inStock">Товар имеется на складе: 5шт.</div>
-                            <a href="Car_Page_Template.php"><div class="ToCar ToCarPP">+Купить</div></a>
+                            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                                <div class="ToCar ToCarPP">+Купить</div>
+                            </a>
                         </div>
                     </div>
                 </div>
