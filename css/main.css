@@ -526,6 +526,7 @@ img {
     background-color: lightpink;
 }
 
+
 .login_form input[type="submit"],
 .login_form input[type="reset"] {
     font-size: 12pt;
@@ -604,4 +605,8 @@ img {
     display: block;
     width: 100px;
     float: left;
+}
+
+.error-field input[type="text"], .error-field input[type="password"]{
+    border: solid lightcoral 2px;
 }

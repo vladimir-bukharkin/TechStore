@@ -68,11 +68,12 @@
                     </div>
                 <?php endif ?>
                 <form action="login.php" method="post">
-                    <div class="login-row">
+                    <div class="login-row <?= is_error($errors, 'username') ? 'error-field' : ''?>">
                         <label for="username">Имя пользователя<span class="required">*</span></label>
-                        <input type="text" name="username" id="username" value="">
+                        <input type="text" name="username" id="username"
+                               value="<?= isset($form['username']) ? $form['username'] : '' ?>">
                     </div>
-                    <div class="login-row">
+                    <div class="login-row <?= is_error($errors, 'password') ? 'error-field' : ''?>">
                         <label for="password">Пароль<span class="required">*</span></label>
                         <input type="password" name="password" id="password">
                     </div>

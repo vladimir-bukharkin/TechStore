@@ -68,19 +68,19 @@
                     </div>
                 <?php endif ?>
                 <form action="register.php" method="post">
-                    <div class="login-row">
+                    <div class="login-row <?= is_error($errors, 'username') ? 'error-field' : ''?>">
                         <label for="username">Имя пользователя<span class="required">*</span></label>
                         <input type="text" name="username" id="username" value="">
                     </div>
-                    <div class="login-row">
+                    <div class="login-row <?= is_error($errors, 'e-mail') ? 'error-field' : ''?>">
                         <label for="e-mail">Эл.почта<span class="required">*</span></label>
                         <input type="text" name="e-mail" id="e-mail" value="">
                     </div>
-                    <div class="login-row">
+                    <div class="login-row <?= is_error($errors, 'password') ? 'error-field' : ''?>">
                         <label for="password">Пароль<span class="required">*</span></label>
                         <input type="password" name="password" id="password">
                     </div>
-                    <div class="login-row">
+                    <div class="login-row <?= is_error($errors, 'confirm-password') ? 'error-field' : ''?>">
                         <label for="confirm-password">Подтверждение пароля<span class="required">*</span></label>
                         <input type="password" name="confirm-password" id="password">
                     </div>
