@@ -46,14 +46,12 @@
             <ul>
                 <?php for($i=0; $i<count($category); $i++):?>
                     <li class="notebook-menu">
-
                         <form action="category.php" method="get">
                             <input type="hidden" name="catgory_id" value="<?= $category[$i]['id'] ?>">
                             <button type="submit" class="hiddenButton">
                                 <?php echo $category[$i]['title'];?>
                             </button>
                         </form>
-
                         <ul class="sub">
                             <?php for($j=0; $j<3; $j++):?>
                                 <li><a href="">Производитель <?php echo $j ?></a></li>
