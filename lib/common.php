@@ -761,3 +761,38 @@ function get_popular_products($dbh)
 
     return $items_result;
 }
+
+/*
+ * Выполняет поиск в базе данных и загрузку товаров, добавленные казанным пользователем
+ */
+function db_car_find_by_user_id($dbh, $user_id)
+{
+    $query = 'SELECT * FROM car WHERE user_id=?';
+    $result = array();
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 's', $user_id);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}

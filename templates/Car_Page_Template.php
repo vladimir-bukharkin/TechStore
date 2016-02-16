@@ -45,24 +45,26 @@
             <div class="DescMyCar">Моя корзина</div>
             <div class="main-windowCar">
                 <div class="Product-itemTable">
-                    <?php for($i=0; $i<2; $i++): ?>
+                    <?php for($i=0; $i<count($car_items); $i++): ?>
                         <div class="Product-itemRow">
                             <div class="product-Cell-image">
                                 <div class="image-div image-divCar">
-                                    <img alt="Notebook" src="Images/30023889m.jpg">
+                                    <img alt="Notebook" src="<?= $car_items[$i][0]['img'];?>">
                                 </div>
                             </div>
                             <div class="product-name product-nameCell product-nameCar">
-                                <a href="product.php">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</a>
+                                <a href="product.php"><?php echo $car_items[$i][0]['title'];?></a>
                                 <div class="ProductID">Код товара:23523</div>
                             </div>
                             <div class="AmountCell">
                                 <button class="Product-delete">X</button>
-                                <div class="PriceDiv"><?php echo $price?>р.</div>
+                                <div class="PriceDiv">
+                                    <?php echo $car_items[$i][0]['row_amount'];?>р.</div>
                                 <div class="AmountField">
 
                                         <button type="submit" class="Min-button MPbutton" name="MinusBut">-</button>
-                                        <input class="amount-product" type="text" name="amount-product" value="1">
+                                        <input class="amount-product" type="text" name="amount-product"
+                                               value="<?= intval($car_items[$i][0]['count']);?>">
                                         <button type="submit" class="Plus-button MPbutton" name="PlusBut">+</button>
 
                                 </div>
@@ -70,26 +72,31 @@
                         </div>
                     <?php endfor;?>
                 </div>
-                <div class="InTotal">Итого:<div class="TotalPrice">2015р.</div></div>
+                <div class="InTotal">Итого:<div class="TotalPrice">
+                        <?= intval($car_items[0]['total']);?>р.</div></div>
             </div>
             <input class="submitOffer" type="submit" name="SubmitOffer" value="Оформить заказ">
         </div>
         <div class="main-part PopularPart">
             <div class="category_name popular">Популярное</div>
-            <div class="Popular-Window-in-Car">
+            <div class="main-window">
                 <?php for($i=0; $i<8; $i++): ?>
-                    <a href="product.php">
-                        <div class="item itemCar">
-                            <div class="main-image">
-                                <img alt="Notebook" src="Images/30023889m.jpg">
-                            </div>
-                            <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-                            <div class="Price"><?php echo $price?>р.</div>
-                            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                                <div class="ToCar">+Купить</div>
-                            </a>
-                        </div>
-                    </a>
+
+                    <div class="item">
+                        <form action="product.php">
+                            <input type="hidden" name="product_id" value="<?= $items[$i][0]['id'] ?>">
+                            <button type="submit" class="hiddenButton">
+                                <div class="main-image">
+                                    <img alt="Notebook" src="<?= $items[$i][0]['img'];?>">
+                                </div>
+                                <div class="product-name popular-name"><?php echo $items[$i][0]['title'];?></div>
+                                <div class="Price"><?php echo intval($items[$i][0]['price']);?>р.</div>
+                            </button>
+                        </form>
+                        <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                            <div class="ToCar">+Купить</div>
+                        </a>
+                    </div>
                 <?php endfor;?>
             </div>
         </div>
@@ -104,6 +111,8 @@
             <p>Группа ВР-09-15-11</p>
         </div>
     </div>
+
+    <?php print_r($_SESSION);  ?>
 </div>
 </body>
 </html>
