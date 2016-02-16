@@ -95,6 +95,7 @@ function add_error(&$errors, $field, $description)
     return false;
 }
 
+/*загрузка изображения*/
 
 /* ****************************************************************************
  * Валидация данных
@@ -124,6 +125,19 @@ function read_string($form, $field, &$obj, &$errors, $min, $max, $is_required, $
     return true;
 }
 
+function read_img($form, $field, &$obj, &$errors, $is_required, $default=null)
+{
+    $obj[$field] = $default;
+    if (!isset($form[$field])) {
+        return $is_required ? add_error($errors, $field, 'required') : true;
+    }
+
+    $value = $form[$field];
+
+    $obj[$field] = $value;
+    return true;
+}
+
 function read_email($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null)
 {
     $obj[$field] = $default;
@@ -141,6 +155,56 @@ function read_email($form, $field, &$obj, &$errors, $min, $max, $is_required, $d
     // проверяем, что в строке задан адрес электронной почты
     if (!filter_var($value, FILTER_VALIDATE_EMAIL))
         return add_error($errors, $field, 'invalid');
+
+    $obj[$field] = $value;
+    return true;
+}
+
+function read_integer($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null)
+{
+    $obj[$field] = $default;
+    if (!isset($form[$field])) {
+        return $is_required ? add_error($errors, $field, 'required') : true;
+    }
+
+    // проверяем, что передано число
+    $value = filter_var($form[$field], FILTER_VALIDATE_INT);
+    if ($value === false)
+        return add_error($errors, $field, 'invalid');
+
+    if (is_int($min) && $value < $min)
+        return add_error($errors, $field, 'too-small');
+
+    if (is_int($max) && $value > $max)
+        return add_error($errors, $field, 'too-big');
+
+    $obj[$field] = $value;
+    return true;
+}
+
+/*
+ * Проверяет корректность десятичного вещественного числа в форме, если передано правильное число,
+ * копирует его в $obj и возвращает true; false и заполненный массив ошибок, если нет
+ */
+
+function read_decimal($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null)
+{
+    $obj[$field] = $default;
+    if (!isset($form[$field])) {
+        return $is_required ? add_error($errors, $field, 'required') : true;
+    }
+
+    // проверяем, что передано число
+    $pattern = '/^[-+]?[0-9]*\.?[0-9]+$/';
+    $value = trim($form[$field]);
+    if (!preg_match($pattern, $value))
+        return add_error($errors, $field, 'invalid');
+
+    if (is_string($min) && $min != '' && bccomp($value, $min) == -1)
+        return add_error($errors, $field, 'too-small');
+
+    if (is_string($max) && $max != '' && bccomp($value, $max) == 1)
+        return add_error($errors, $field, 'too-big');
 
     $obj[$field] = $value;
     return true;
@@ -261,6 +325,34 @@ function register_user($dbh, &$user, &$errors)
     store_current_user_id($db_user['id']);
     return true;
 }
+
+
+/*
+ * Добавляет описание товара в базу данных, возвращает true, если регистраиция
+ * завершилась успешно, и false и заполненный массив ошибок в противном
+ * случае
+ */
+function add_product($dbh, &$product, &$errors)
+{
+    $product = array();
+    $errors  = empty_errors();
+
+    // считываем строки из запроса
+    read_string($_POST, 'title', $product, $errors, 2, 60, true);
+    read_integer($_POST, 'category_id', $product, $errors, 1, null, true);
+    read_decimal($_POST, 'price', $product, $errors,  '0.0', null, true);
+    read_integer($_POST, 'stock', $product, $errors, 1, null, true);
+    read_string($_POST, 'description', $product, $errors, 1, 1000, false, null, false);
+    read_img($_FILES, 'img', $product, $errors, true);
+
+
+
+    // форма передана правильно, сохраняем пользователя в базу данных
+    $db_product = db_product_insert($dbh, $product);
+
+    return true;
+}
+
 
 /* ****************************************************************************
  * Список пользователей в базе данных
@@ -432,4 +524,113 @@ function db_user_insert($dbh, $user)
     mysqli_stmt_close($stmt);
 
     return $user;
+}
+
+/*products*/
+
+function db_category_find_all($dbh)
+{
+    $query = 'SELECT * FROM categories ORDER BY title';
+    $result = array();
+
+    // выполняем запрос к базе данных
+    $qr = mysqli_query($dbh, $query, MYSQLI_STORE_RESULT);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата
+    mysqli_free_result($qr);
+
+    return $result;
+}
+
+/*
+ * Извлекает из базы данных список товаров
+ */
+function db_product_find_all($dbh)
+{
+    $query = 'SELECT p.*, c.title as category_title FROM products p INNER JOIN categories c ON c.id=p.category_id';
+    $result = array();
+
+    // выполняем запрос к базе данных
+    $qr = mysqli_query($dbh, $query, MYSQLI_STORE_RESULT);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата
+    mysqli_free_result($qr);
+
+    return $result;
+}
+
+/*
+ * Вставляет в базу данных строку с информацией о товаре, возвращает массив
+ * с данными товара и его id в базе данных
+ */
+function db_product_insert($dbh, $product)
+{
+    $query = 'INSERT INTO products(title,category_id,price,stock,description,img) VALUES(?,?,?,?,?,?)';
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 'ssssss',
+        $product['title'], $product['category_id'], $product['price'], $product['stock'], $product['description'], $product['img']);
+
+    // выполняем запрос
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем идентификатор вставленной записи
+    $product['id'] = mysqli_insert_id($dbh);
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_stmt_close($stmt);
+
+    return $product;
+}
+
+/*
+ * Выполняет поиск в базе данных и загрузку товаров, принадлежащих указанной категории
+ */
+function db_product_find_by_category_id($dbh, $category_id)
+{
+    $query = 'SELECT p.*, c.title as category_title FROM products p INNER JOIN categories c ON c.id=p.category_id WHERE p.category_id=?';
+    $result = array();
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 's', $category_id);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
 }
