@@ -629,7 +629,7 @@ function db_product_insert($dbh, $product)
  */
 function db_product_find_by_category_id($dbh, $category_id)
 {
-    $query = 'SELECT p.*, c.title as category_title FROM products p INNER JOIN categories c ON c.id=p.category_id WHERE p.category_id=?';
+    $query = 'SELECT * FROM products WHERE category_id=?';
     $result = array();
 
     // подготовливаем запрос для выполнения
@@ -638,6 +638,38 @@ function db_product_find_by_category_id($dbh, $category_id)
         db_handle_error($dbh);
 
     mysqli_stmt_bind_param($stmt, 's', $category_id);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+function db_product_find_by_product_title($dbh, $product_title)
+{
+    $query = 'SELECT * FROM products WHERE title=?';
+    $result = array();
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 's', $product_title);
 
     // выполняем запрос и получаем результат
     if (mysqli_stmt_execute($stmt) === false)
