@@ -44,8 +44,8 @@
         <div class="main-menu">
             <div class="catalog">Каталог товаров</div>
             <ul>
-                <?php for($i=0; $i<6; $i++):?>
-                    <li class="notebook-menu"><a href="category.php">Ноутбуки и планшеты</a>
+                <?php for($i=0; $i<count($category); $i++):?>
+                    <li class="notebook-menu"><a href="category.php"><?php echo $category[$i]['title'];?></a>
                         <ul class="sub">
                             <?php for($j=0; $j<3; $j++):?>
                                 <li><a href="product.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
@@ -61,25 +61,28 @@
             <div class="category_name">Список товаров</div>
             <div class="main-window">
 
-
                 <div class="Product-itemTable">
                     <?php for($i=0; $i<count($items); $i++): ?>
-                        <a href="Product_Page_Template.php">
+                        <form action="product.php" method="get">
+                            <input type="hidden" name="product_id" value="<?= $items[$i]['id'] ?>">
+
                             <div class="Product-itemRow">
-                                <div class="product-Cell-image">
-                                    <div class="image-div">
-                                        <img alt="Notebook" src="<?= $items[$i]['img'];?>">
+                                <button type="submit" class="hiddenButton">
+                                    <div class="product-Cell-image">
+                                        <div class="image-div">
+                                            <img alt="Notebook" src="<?= $items[$i]['img'];?>">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="product-name product-nameCell"><?php echo $items[$i]['title'];?></div>
-                                <div class="Price PriceCell"><?php echo intval($items[$i]['price']);?>р.</div>
+                                    <div class="product-name product-nameCell"><?php echo $items[$i]['title'];?></div>
+                                    <div class="Price PriceCell"><?php echo intval($items[$i]['price']);?>р.</div>
+                                </button>
                                 <div class="Car-Cell">
                                     <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
                                         <div class="ToCar ToCarPP">+Купить</div>
                                     </a>
                                 </div>
                             </div>
-                        </a>
+                        </form>
                     <?php endfor;?>
                 </div>
             </div>

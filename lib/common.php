@@ -707,7 +707,7 @@ function db_product_find_by_product_id($dbh, $product_id)
  */
 function db_product_find_category_all($dbh)
 {
-    $query = 'SELECT * FROM products';
+    $query = 'SELECT * FROM categories';
     $result = array();
 
 

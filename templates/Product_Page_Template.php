@@ -40,16 +40,18 @@
 
 <div class=" central-part">
     <div class="layout-positioner">
-        <div class="link-line"><a href="./.php">Главная страница</a> > <a href="category.php">Категория</a> > Ноутбук Asus</div>
+        <div class="link-line"><a href="./">Главная страница</a> >
+            <a href="category.php"><?php echo $category[0]['title'];?></a> >
+            <?php echo $items[0]['title'];?></div>
         <!-- menu -->
         <div class="main-menu">
             <div class="catalog">Каталог товаров</div>
             <ul>
-                <?php for($i=0; $i<6; $i++):?>
-                    <li class="notebook-menu"><a href="category.php">Ноутбуки и планшеты</a>
+                <?php for($i=0; $i<count($category); $i++):?>
+                    <li class="notebook-menu"><a href="category.php"><?php echo $category[$i]['title'];?></a>
                         <ul class="sub">
                             <?php for($j=0; $j<3; $j++):?>
-                                <li><a href="product.html">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                                <li><a href="product.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
                             <?php endfor;?>
                         </ul>
                     </li>
@@ -60,19 +62,19 @@
         <!-- Items -->
         <div class="main-part">
             <div class="category_name">Страница товара</div>
-            <div class="product-tittle-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-            <div class="ProductID">Код товара 10046</div>
+            <div class="product-tittle-name"><?php echo $items[0]['title'];?></div>
+            <div class="ProductID">Код товара <?php echo intval($items[0]['id']);?></div>
             <div class="main-window main-windowProd">
                 <div class="Product-itemTable">
                     <div class="Product-itemRow Product-itemRowNoHover">
                         <div class="product-Cell-image">
                             <div class="product-image">
-                                <img alt="Notebook" src="Images/30023889m.jpg">
+                                <img alt="Notebook" src="<?= $items[0]['img'];?>">
                             </div>
                         </div>
                         <div class="PriceStockCar-div">
-                            <div class="ProductPrice">21990р.</div>
-                            <div class="inStock">Товар имеется на складе: 5шт.</div>
+                            <div class="ProductPrice"><?php echo intval($items[0]['price']);?>р.</div>
+                            <div class="inStock">Товар имеется на складе: <?php echo intval($items[0]['stock']);?>шт.</div>
                             <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
                                 <div class="ToCar ToCarPP">+Купить</div>
                             </a>
@@ -82,7 +84,8 @@
             </div>
             <div class="descriptionH">Описание</div>
             <div class="description">
-                Какой-то текст
+                <h4>Описание <?php echo $items[0]['title'];?></h4>
+                <?php echo $items[0]['description']; ?>
             </div>
         </div>
     </div>

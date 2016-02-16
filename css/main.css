@@ -274,7 +274,8 @@ a {
     width: 410px;
     margin-top: 15px;
     color: black;
-    padding: 0 10px;
+    padding: 0 20px;
+    text-align: left;
 }
 
 .Price {
@@ -614,4 +615,9 @@ img {
 
 .product-name a {
     color: black;
+}
+
+.hiddenButton {
+    background: none;
+    border: none;
 }
