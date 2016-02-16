@@ -178,12 +178,21 @@ body {
     margin: 0;
     padding: 0;
 }
-.main-menu li a{
+.main-menu li .hiddenButton, .main-menu li a {
     display: block;
     border-bottom: 1px solid lightgreen;
     padding: 15px;
     color: black;
+    width: 225px;
+    text-align: left;
+    font-size: medium;
 }
+
+.main-menu li a {
+    width: 170px;
+    height: 22px;
+}
+
 .main-menu > ul > li {
     position:relative;
 }
