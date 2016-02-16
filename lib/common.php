@@ -724,4 +724,25 @@ function db_product_find_category_all($dbh)
 
     return $result;
 }
+/*
+ * Извлекает из базы данных список популярных
+ */
+function db_product_find_popular_all($dbh)
+{
+    $query = 'SELECT * FROM popular';
+    $result = array();
 
+
+    $qr = mysqli_query($dbh, $query, MYSQLI_STORE_RESULT);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата
+    mysqli_free_result($qr);
+
+    return $result;
+}

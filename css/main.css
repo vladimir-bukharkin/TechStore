@@ -287,6 +287,11 @@ a {
     text-align: left;
 }
 
+.popular-name {
+    width: 210px;
+    text-align: center;
+}
+
 .Price {
     color: black;
     font-size: large;

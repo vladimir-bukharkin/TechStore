@@ -46,15 +46,21 @@
         <div class="main-menu">
             <div class="catalog">Каталог товаров</div>
             <ul>
-                <?php for($i=0; $i<6; $i++):?>
-                    <li class="notebook-menu"><a href="category.php">Ноутбуки и планшеты</a>
+                <?php for($i=0; $i<count($category); $i++):?>
+                    <li class="notebook-menu">
+                        <form action="category.php" method="get">
+                            <input type="hidden" name="catgory_id" value="<?= $category[$i]['id'] ?>">
+                            <button type="submit" class="hiddenButton">
+                                <?php echo $category[$i]['title'];?>
+                            </button>
+                        </form>
                         <ul class="sub">
-                            <?php for($j=0; $j<6; $j++):?>
-                                <li><a href="product.php">Ноутбук Lenovo IdeaPad G5045 80MQ001GRK</a></li>
+                            <?php for($j=0; $j<3; $j++):?>
+                                <li><a href="">Производитель <?php echo $j ?></a></li>
                             <?php endfor;?>
                         </ul>
                     </li>
-               <?php endfor;?>
+                <?php endfor;?>
             </ul>
         </div>
 
@@ -62,19 +68,23 @@
         <div class="main-part">
             <div class="category_name popular">Популярное</div>
             <div class="main-window">
-                <?php for($i=0; $i<2; $i++): ?>
-                    <a href="product.php">
-                        <div class="item">
-                            <div class="main-image">
-                                <img alt="Notebook" src="<?= $items[$i][0]['img']['tmp_name'];?>">
-                            </div>
-                            <div class="product-name"><?php echo $items[$i][0]['title'];?></div>
-                            <div class="Price"><?php echo intval($items[$i][0]['price']);?>р.</div>
-                            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                                <div class="ToCar">+Купить</div>
-                            </a>
-                        </div>
-                    </a>
+                <?php for($i=0; $i<6; $i++): ?>
+
+                    <div class="item">
+                        <form action="product.php">
+                            <input type="hidden" name="product_id" value="<?= $items[$i][0]['id'] ?>">
+                            <button type="submit" class="hiddenButton">
+                                <div class="main-image">
+                                    <img alt="Notebook" src="<?= $items[$i][0]['img'];?>">
+                                </div>
+                                <div class="product-name popular-name"><?php echo $items[$i][0]['title'];?></div>
+                                <div class="Price"><?php echo intval($items[$i][0]['price']);?>р.</div>
+                            </button>
+                        </form>
+                        <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
+                            <div class="ToCar">+Купить</div>
+                        </a>
+                    </div>
                 <?php endfor;?>
             </div>
         </div>
