@@ -125,15 +125,39 @@ function read_string($form, $field, &$obj, &$errors, $min, $max, $is_required, $
     return true;
 }
 
-function read_img($form, $field, &$obj, &$errors, $is_required, $default=null)
+/*Проверяет корректность загружаемой картинки
+* Мы проверяем на расширение загружаемого файла. Если оно представляет собой PHP-скрипт,
+* то мы такой файл просто не пропускаем. Дальше мы получаем MIME-type и размер.
+* Проверяем их на удовлетворение нашим условиям. Если всё хорошо, то мы загружаем файл.
+*/
+function read_img($form, $field, &$obj, &$errors, $min, $max, $is_required, $default=null)
 {
     $obj[$field] = $default;
     if (!isset($form[$field])) {
         return $is_required ? add_error($errors, $field, 'required') : true;
     }
 
-    $value = $form[$field];
+    /*Проверка MIME-type*/
+    $blacklist = array(".php", ".phtml", ".php3", ".php4", ".html", ".htm");
+    foreach($blacklist as $item)
+    {
+        if(preg_match("/$item\$/i", $form[$field]['name'])) {
+            return add_error($errors, $field, 'incorrect MIME-type');
+        }
+    }
+    $type = $form[$field]['type'];
+    $size = $form[$field]['size'];
 
+    /*Проверяем тип файла, если тип не jpg, jpeg, png, то выводим ошибку*/
+    if(($type != "image/jpg") && ($type != "image/jpeg") && ($type != "image/png")) {
+        return add_error($errors, $field, 'incorrect type');
+    }
+    /*Проверяем размер файла*/
+    if ($size > $max) {
+        return add_error($errors, $field, 'large size img');
+    }
+
+    $value = $form[$field];
     $obj[$field] = $value;
     return true;
 }
@@ -338,21 +362,21 @@ function add_product($dbh, &$product, &$errors)
     $errors  = empty_errors();
 
     // считываем строки из запроса
-    read_string($_POST, 'title', $product, $errors, 2, 60, true);
+    read_string($_POST, 'title', $product, $errors, 2, 60, false);
     read_integer($_POST, 'category_id', $product, $errors, 1, null, true);
     read_decimal($_POST, 'price', $product, $errors,  '0.0', null, true);
     read_integer($_POST, 'stock', $product, $errors, 1, null, true);
     read_string($_POST, 'description', $product, $errors, 1, 1000, false, null, false);
-    read_img($_FILES, 'img', $product, $errors, true);
+    read_img($_FILES, 'img', $product, $errors, 0, 65536, true);
 
-
+    if (has_errors($errors))
+        return false;
 
     // форма передана правильно, сохраняем пользователя в базу данных
     $db_product = db_product_insert($dbh, $product);
 
     return true;
 }
-
 
 /* ****************************************************************************
  * Список пользователей в базе данных
@@ -584,7 +608,7 @@ function db_product_insert($dbh, $product)
     if ($stmt === false)
         db_handle_error($dbh);
 
-    mysqli_stmt_bind_param($stmt, 'ssssss',
+    mysqli_stmt_bind_param($stmt, 'sssssb',
         $product['title'], $product['category_id'], $product['price'], $product['stock'], $product['description'], $product['img']);
 
     // выполняем запрос
