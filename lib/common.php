@@ -366,8 +366,8 @@ function add_product($dbh, &$product, &$errors)
     read_integer($_POST, 'category_id', $product, $errors, 1, null, true);
     read_decimal($_POST, 'price', $product, $errors,  '0.0', null, true);
     read_integer($_POST, 'stock', $product, $errors, 1, null, true);
-    read_string($_POST, 'description', $product, $errors, 1, 1000, false, null, false);
-    read_img($_FILES, 'img', $product, $errors, 0, 65536, true);
+    read_string($_POST, 'description', $product, $errors, 1, 10000, false, null, false);
+    read_img($_FILES, 'img', $product, $errors, 0, 204800, true);
 
     if (has_errors($errors))
         return false;
@@ -572,28 +572,6 @@ function db_category_find_all($dbh)
     return $result;
 }
 
-/*
- * Извлекает из базы данных список товаров
- */
-function db_product_find_all($dbh)
-{
-    $query = 'SELECT p.*, c.title as category_title FROM products p INNER JOIN categories c ON c.id=p.category_id';
-    $result = array();
-
-    // выполняем запрос к базе данных
-    $qr = mysqli_query($dbh, $query, MYSQLI_STORE_RESULT);
-    if ($qr === false)
-        db_handle_error($dbh);
-
-    // последовательно извлекаем строки
-    while ($row = mysqli_fetch_assoc($qr))
-        $result[] = $row;
-
-    // освобождаем ресурсы, связанные с хранением результата
-    mysqli_free_result($qr);
-
-    return $result;
-}
 
 /*
  * Вставляет в базу данных строку с информацией о товаре, возвращает массив
@@ -690,3 +668,60 @@ function db_product_find_by_product_title($dbh, $product_title)
 
     return $result;
 }
+
+function db_product_find_by_product_id($dbh, $product_id)
+{
+    $query = 'SELECT * FROM products WHERE id=?';
+    $result = array();
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 's', $product_id);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+
+/*
+ * Извлекает из базы данных список товаров
+ */
+function db_product_find_category_all($dbh)
+{
+    $query = 'SELECT * FROM products';
+    $result = array();
+
+
+    $qr = mysqli_query($dbh, $query, MYSQLI_STORE_RESULT);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата
+    mysqli_free_result($qr);
+
+    return $result;
+}
+

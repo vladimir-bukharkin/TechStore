@@ -62,14 +62,14 @@
         <div class="main-part">
             <div class="category_name popular">Популярное</div>
             <div class="main-window">
-                <?php for($i=0; $i<6; $i++): ?>
+                <?php for($i=0; $i<2; $i++): ?>
                     <a href="product.php">
                         <div class="item">
                             <div class="main-image">
-                                <img alt="Notebook" src="Images/30023889m.jpg">
+                                <img alt="Notebook" src="<?= $items[$i][0]['img']['tmp_name'];?>">
                             </div>
-                            <div class="product-name">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-                            <div class="Price">21990р.</div>
+                            <div class="product-name"><?php echo $items[$i][0]['title'];?></div>
+                            <div class="Price"><?php echo intval($items[$i][0]['price']);?>р.</div>
                             <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
                                 <div class="ToCar">+Купить</div>
                             </a>

@@ -125,6 +125,7 @@
     </div>
 
     <?php foreach($errors as $a) foreach($a as $b) {echo $b;} ?>
+    <?php print_r($file) ?>
 
 </div>
 

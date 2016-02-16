@@ -271,7 +271,7 @@ a {
 
 .product-name {
     height: 60px;
-    width: 90%;
+    width: 410px;
     margin-top: 15px;
     color: black;
     padding: 0 10px;
@@ -317,6 +317,7 @@ img {
 .image-div {
     width: 150px;
     height: 150px;
+    margin-top: 5px;
 }
 
 .ToCarPP {

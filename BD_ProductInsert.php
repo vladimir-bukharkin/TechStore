@@ -28,7 +28,7 @@ function main()
             // перенаправляем на список товаров
             render('sucsess_register', array());
         } else render('BD_ProductInsert_T', array(
-            'form' => $_POST, 'errors' => $errors));
+            'form' => $_POST, 'file' => $_FILES, 'errors' => $errors));
     }else {
         // отправляем пользователю чистую форму для входа
         render('BD_ProductInsert_T', array(

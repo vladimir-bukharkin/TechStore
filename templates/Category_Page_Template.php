@@ -63,16 +63,16 @@
 
 
                 <div class="Product-itemTable">
-                    <?php for($i=0; $i<2; $i++): ?>
+                    <?php for($i=0; $i<count($items); $i++): ?>
                         <a href="Product_Page_Template.php">
                             <div class="Product-itemRow">
                                 <div class="product-Cell-image">
                                     <div class="image-div">
-                                        <img alt="Notebook" src="Images/30023889m.jpg">
+                                        <img alt="Notebook" src="<?= $items[$i]['img'];?>">
                                     </div>
                                 </div>
-                                <div class="product-name product-nameCell">15.6" Ноутбук Asus X553MA 90NB04X1-M25360 черный</div>
-                                <div class="Price PriceCell">21990р.</div>
+                                <div class="product-name product-nameCell"><?php echo $items[$i]['title'];?></div>
+                                <div class="Price PriceCell"><?php echo intval($items[$i]['price']);?>р.</div>
                                 <div class="Car-Cell">
                                     <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
                                         <div class="ToCar ToCarPP">+Купить</div>

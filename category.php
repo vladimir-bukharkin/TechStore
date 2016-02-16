@@ -1,14 +1,21 @@
 <?php
 
-
 require('lib/common.php');
 
-function main() {
-    session_start();
+/*
+ * Точка входа скрипта
+ */
+function main()
+{
 
 
-    /*Выводим резльтирующую страницу */
-    render('Category_Page_Template', array());
+    // обрабатываем отправленную форму
+    $dbh = db_connect();
+    $items_result = db_product_find_by_category_id($dbh, 1);
+    db_close($dbh);
+
+    render('Category_Page_Template', array(
+        'items' => $items_result));
 }
 
 main();
