@@ -1,15 +1,24 @@
 <?php
 
-
 require('lib/common.php');
 
-function main() {
+/*
+ * Точка входа скрипта
+ */
+function main()
+{
     session_start();
 
+    // обрабатываем отправленную форму
+    $dbh = db_connect();
 
-    $price = 21990;
-    /*Выводим резльтирующую страницу */
-    render('Car_Page_Template', array('price' => $price));
+    $items_result = get_popular_products($dbh);
+    $category_items = db_product_find_category_all($dbh);
+
+    db_close($dbh);
+
+    render('Main_Page_Template', array(
+        'items' => $items_result, 'category' => $category_items));
 }
 
 main();

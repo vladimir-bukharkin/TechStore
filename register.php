@@ -19,18 +19,10 @@ function main()
     session_start();
 
     /**************************************************************************
-     * Вывод "Популярное" на страницу
+     * Вывод "Популярное" на страницу и меню
      */
-    // обрабатываем отправленную форму
     $dbh = db_connect();
-    //извлекаем массив популярных товаров
-    $popular_result = db_product_find_popular_all($dbh);
-    for ($i=0; $i < count($popular_result); $i++) {
-        $items_result[$i] = db_product_find_by_product_id($dbh, $popular_result[$i]['products_id']);
-    }
-    //Перемешиваем массив популярных товаров
-    shuffle($items_result);
-
+    $items_result = get_popular_products($dbh);
     $category_items = db_product_find_category_all($dbh);
     db_close($dbh);
 

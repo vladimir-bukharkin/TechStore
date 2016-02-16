@@ -746,3 +746,18 @@ function db_product_find_popular_all($dbh)
 
     return $result;
 }
+
+/*‘ункци€ вывода попл€рных товаров*/
+
+function get_popular_products($dbh)
+{
+    //извлекаем массив попул€рных товаров
+    $popular_result = db_product_find_popular_all($dbh);
+    for ($i=0; $i < count($popular_result); $i++) {
+        $items_result[$i] = db_product_find_by_product_id($dbh, $popular_result[$i]['products_id']);
+    }
+    //ѕеремешиваем массив попул€рных товаров
+    shuffle($items_result);
+
+    return $items_result;
+}
