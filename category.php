@@ -24,6 +24,7 @@ function main()
     //иначе открыть категорию catgory_id=1
     $dbh = db_connect();
 
+    $count_in_car = product_count_in_car($dbh);
 
     if (is_postbuy()) {
         if (is_current_user()) {
@@ -41,7 +42,7 @@ function main()
     db_close($dbh);
 
     render('Category_Page_Template', array(
-        'items' => $items_result, 'category' => $category_items));
+        'items' => $items_result, 'category' => $category_items, 'count_in_car' => $count_in_car));
 
 }
 

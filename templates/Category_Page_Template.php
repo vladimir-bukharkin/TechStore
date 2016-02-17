@@ -21,7 +21,11 @@
         </div>
         <div class="rightHeader">
             <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                <div class="ToCar headCar">В корзину</div>
+                <div class="ToCar headCar">В корзину
+                    <?php if($count_in_car && is_current_user()) :?>
+                        <div class="count_in_car"><?php echo $count_in_car?></div>
+                    <?php endif ?>
+                </div>
             </a>
             <?php if(is_current_user()) { ?>
                 <div class="login_positioner">

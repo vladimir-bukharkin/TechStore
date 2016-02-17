@@ -24,8 +24,26 @@ function main()
         } else redirect('login.php');
     }
 
+    if (isset($_POST['product_decrement']))  {
+        if (is_current_user()) {
+            $product = array('count' => 1, 'user_id' => $_SESSION['user_id'], 'product_id' => $_POST['product_decrement']);
+            $result = db_product_incar_decrement($dbh, $product);
+            if($result == null || $result == array()) {}
+        } else redirect('login.php');
+    }
+
+    $count_in_car = product_count_in_car($dbh);
+
+    if (isset($_POST['product_delete']))  {
+        if (is_current_user()) {
+            $product = array('user_id' => $_SESSION['user_id'], 'product_id' => $_POST['product_delete']);
+            db_product_incar_delete($dbh, $product);
+        } else redirect('login.php');
+    }
+
     $items_result = get_popular_products($dbh);
     $user_car = db_car_find_by_user_id($dbh, $_SESSION['user_id']);
+
 
     $total = 0;
 
@@ -33,12 +51,11 @@ function main()
         $car_items[] = db_product_find_by_product_id($dbh, $user_car[$i]['products_id']);
         unset($car_items[$i][0]['description']);
         $car_items[$i][0]['count'] = $user_car[$i]['count'];
+
         $car_items[$i][0]['row_amount'] = $car_items[$i][0]['price']*$car_items[$i][0]['count'];
         $total += $car_items[$i][0]['row_amount'];
     }
         $car_items[0]['total'] = $total;
-
-
 
         db_close($dbh);
 
@@ -46,7 +63,7 @@ function main()
 
 
     render('Car_Page_Template', array(
-        'items' => $items_result, 'car_items' => $car_items));
+        'items' => $items_result, 'car_items' => $car_items, 'count_in_car' => $count_in_car));
 }
 
 main();

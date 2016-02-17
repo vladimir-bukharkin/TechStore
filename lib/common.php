@@ -918,3 +918,68 @@ function db_product_incar_insert($dbh, $product)
         return $product;
     }
 }
+
+function db_product_incar_decrement($dbh, $product)
+{
+    if(bd_is_current_product($dbh, $product['product_id'], $product['user_id']))
+    {
+        $result = db_car_find_by_user_id_and_product_id($dbh, $product['user_id'], $product['product_id']);
+        $result[0]['count'] -= $product['count'];
+        if ($result[0]['count'] == 0) return array();
+
+        $query = 'UPDATE car SET count=? WHERE id=?';
+        // подготовливаем запрос для выполнения
+        $stmt = mysqli_prepare($dbh, $query);
+        if ($stmt === false)
+            db_handle_error($dbh);
+
+        mysqli_stmt_bind_param($stmt, 'ss',
+            $result[0]['count'], $result[0]['id']);
+
+        // выполняем запрос
+        if (mysqli_stmt_execute($stmt) === false)
+            db_handle_error($dbh);
+
+        // освобождаем ресурсы, связанные с хранением результата и запроса
+        mysqli_stmt_close($stmt);
+
+        return $result;
+
+    }
+}
+
+
+function db_product_incar_delete($dbh, $product)
+{
+    if(bd_is_current_product($dbh, $product['product_id'], $product['user_id']))
+    {
+        $query = 'DELETE FROM car WHERE products_id=? AND user_id=?';
+        // подготовливаем запрос для выполнения
+        $stmt = mysqli_prepare($dbh, $query);
+        if ($stmt === false)
+            db_handle_error($dbh);
+
+        mysqli_stmt_bind_param($stmt, 'ss',
+            $product['product_id'], $product['user_id']);
+
+        // выполняем запрос
+        if (mysqli_stmt_execute($stmt) === false)
+            db_handle_error($dbh);
+
+        // освобождаем ресурсы, связанные с хранением результата и запроса
+        mysqli_stmt_close($stmt);
+
+        return true;
+    }
+}
+
+function product_count_in_car($dbh)
+{
+    $user_car = db_car_find_by_user_id($dbh, $_SESSION['user_id']);
+    $count_in_car = 0;
+    for ($i = 0; $i < count($user_car); $i++) {
+        $car_items[] = db_product_find_by_product_id($dbh, $user_car[$i]['products_id']);
+        $count_in_car += $user_car[$i]['count'];
+    }
+    return $count_in_car;
+}

@@ -21,7 +21,11 @@
         </div>
         <div class="rightHeader">
             <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                <div class="ToCar headCar">В корзину</div>
+                <div class="ToCar headCar">В корзину
+                    <?php if($count_in_car && is_current_user()) :?>
+                        <div class="count_in_car"><?php echo $count_in_car?></div>
+                    <?php endif ?>
+                </div>
             </a>
             <?php if(is_current_user()) { ?>
                 <div class="login_positioner">
@@ -57,15 +61,24 @@
                                 <div class="ProductID">Код товара:<?php echo $car_items[$i][0]['id'];?></div>
                             </div>
                             <div class="AmountCell">
-                                <button class="Product-delete">X</button>
+                                <form action="car.php" method="post">
+                                    <input type="hidden" name="product_delete" value="<?= $car_items[$i][0]['id'] ?>">
+                                    <button type="submit" class="Product-delete">X</button>
+                                </form>
                                 <div class="PriceDiv">
                                     <?php echo $car_items[$i][0]['row_amount'];?>р.</div>
                                 <div class="AmountField">
-
+                                    <form action="car.php" method="post">
+                                        <input type="hidden" name="product_decrement" value="<?= $car_items[$i][0]['id'] ?>">
                                         <button type="submit" class="Min-button MPbutton" name="MinusBut">-</button>
+                                    </form>
                                         <input class="amount-product" type="text" name="amount-product"
                                                value="<?= intval($car_items[$i][0]['count']);?>">
-                                        <button type="submit" class="Plus-button MPbutton" name="PlusBut">+</button>
+
+                                    <form action="car.php" method="post">
+                                        <input type="hidden" name="buy_product_id" value="<?= $car_items[$i][0]['id'] ?>">
+                                        <button type="submit" class="Plus-button MPbutton"">+</button>
+                                    </form>
 
                                 </div>
                             </div>
@@ -115,7 +128,7 @@
         </div>
     </div>
 
-    <?php print_r($_SESSION);   ?>
+    <?php echo $count_in_car;   ?>
 </div>
 </body>
 </html>

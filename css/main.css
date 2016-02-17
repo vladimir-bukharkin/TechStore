@@ -101,7 +101,7 @@ body {
     width: 180px;
     height: 60px;
     border-radius: 10px;
-    text-indent: 50px;
+    text-indent: 20px;
     line-height: 60px;
     box-shadow: inset -1px -1px 0 rgba(0,0,0,.2);
     border: solid rgb(224,224,224) 1px;
@@ -111,10 +111,23 @@ body {
     margin-left: 40px;
 }
 
+.count_in_car {
+    position: absolute;
+    top: 15px;
+    border: solid forestgreen 1px;
+    border-radius: 10px;
+    text-indent: 0;
+    text-align: center;
+    left: 190px;
+    width: 20px;
+    height: 30px;
+    line-height: 30px;
+
+}
+
 .headCar {
     float: left;
-    text-indent: 80px;
-
+    text-indent: 70px;
 }
 
 .ToCar:hover {
@@ -442,17 +455,26 @@ img {
 }
 
 .amount-product {
-    height: 38px;
+    height: 34px;
     width: 45px;
     border: solid grey 1px;
     border-radius: 5px;
     box-shadow: none;
     text-align: center;
     font-size: 15px;
+    float: left;
+    margin-left: 40px;
 }
 
 .AmountField {
     margin-left: 20px;
+    position: relative;
+}
+
+.AmountField:after {
+    content:'';
+    clear:both;
+    display:table;
 }
 
 .MPbutton {
@@ -463,6 +485,7 @@ img {
     border-radius: 5px;
     height: 38px;
     width: 35px;
+    position: absolute;
 }
 .Min-button {
     background: lightseagreen;
@@ -470,6 +493,7 @@ img {
 
 .Plus-button {
     background: lightgreen;
+    margin-left: 5px;
 }
 
 .Product-delete {
