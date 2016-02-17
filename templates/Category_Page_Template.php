@@ -112,6 +112,8 @@
             <p>Группа ВР-09-15-11</p>
         </div>
     </div>
+    <?php print_r($_GET['catgory_id']); ?>
+
 </div>
 </body>
 </html>
