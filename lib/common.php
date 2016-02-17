@@ -796,3 +796,125 @@ function db_car_find_by_user_id($dbh, $user_id)
 
     return $result;
 }
+
+//Извлечь из базы только одного продукта
+function db_car_find_by_user_id_and_product_id($dbh, $user_id, $product_id) {
+    $query = 'SELECT * FROM car WHERE products_id=? AND user_id=?';
+    $result = array();
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    mysqli_stmt_bind_param($stmt, 'ss', $product_id, $user_id);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
+}
+
+
+/*
+*  Для пользователя, вошедшего в систему храним в сесии его ID
+*/
+
+/*Функция для проверки: имеется ли пользователь в сети*/
+function bd_is_current_product($dbh, $product_id, $user_id)
+{
+    $result = db_car_find_by_user_id_and_product_id($dbh, $user_id, $product_id);
+    if($result == null || $result == array()) return false;
+    else return true;
+}
+
+/*Функция возврщения индификатора пользователя*/
+function get_current_product_id()
+{
+    return $_SESSION['product_id'];
+}
+
+/*Функция сохранения индификатора пользователя в сессии*/
+function store_current_product_id($id)
+{
+    $_SESSION['product_id'] = $id;
+}
+
+/*Функция сохранения имени пользователя в сессии*/
+function store_current_product_count($product_id, $count)
+{
+    $_SESSION['productid_count'][] = array('product_id' =>$product_id, 'count' => $count);
+}
+
+/*Сбрасывает индификатор пользователя*/
+function reset_current_product_id()
+{
+    unset($_SESSION['product_id']);
+}
+
+/*
+ * Вставляет в базу данных строку с информацией о товаре и пользователе в корзину, возвращает массив
+ * с данными товара и его id в базе данных
+ */
+
+function db_product_incar_insert($dbh, $product)
+{
+    if(bd_is_current_product($dbh, $product['product_id'], $product['user_id']))
+    {
+        $result = db_car_find_by_user_id_and_product_id($dbh, $product['user_id'], $product['product_id']);
+        $result[0]['count'] += $product['count'];
+
+        $query = 'UPDATE car SET count=? WHERE id=?';
+        // подготовливаем запрос для выполнения
+        $stmt = mysqli_prepare($dbh, $query);
+        if ($stmt === false)
+            db_handle_error($dbh);
+
+        mysqli_stmt_bind_param($stmt, 'ss',
+            $result[0]['count'], $result[0]['id']);
+
+        // выполняем запрос
+        if (mysqli_stmt_execute($stmt) === false)
+            db_handle_error($dbh);
+
+        // освобождаем ресурсы, связанные с хранением результата и запроса
+        mysqli_stmt_close($stmt);
+
+        return $result;
+
+    } else {
+
+        $query = 'INSERT INTO car (count,user_id,products_id) VALUES(?,?,?)';
+
+        // подготовливаем запрос для выполнения
+        $stmt = mysqli_prepare($dbh, $query);
+        if ($stmt === false)
+            db_handle_error($dbh);
+
+        mysqli_stmt_bind_param($stmt, 'sss',
+            $product['count'], $product['user_id'], $product['product_id']);
+
+        // выполняем запрос
+        if (mysqli_stmt_execute($stmt) === false)
+            db_handle_error($dbh);
+
+        // освобождаем ресурсы, связанные с хранением результата и запроса
+        mysqli_stmt_close($stmt);
+
+        return $product;
+    }
+}

@@ -81,8 +81,12 @@
                                 <div class="Price"><?php echo intval($items[$i][0]['price']);?>р.</div>
                             </button>
                         </form>
-                        <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                            <div class="ToCar">+Купить</div>
+                        <form action="index.php" method="post">
+                            <input type="hidden" name="buy_product_id" value="<?= $items[$i][0]['id'] ?>">
+                                <button type="submit" class="hiddenButton">
+                                    <div class="ToCar">+Купить</div>
+                                </button>
+                            </form>
                         </a>
                     </div>
                 <?php endfor;?>
@@ -98,6 +102,7 @@
             <p>Бухаркин Владимир</p>
             <p>Группа ВР-09-15-11</p>
         </div>
+        <?php print_r($post); ?>
     </div>
 </div>
 </body>

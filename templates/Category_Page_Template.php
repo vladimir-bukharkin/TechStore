@@ -82,13 +82,17 @@
                                     <div class="product-name product-nameCell"><?php echo $items[$i]['title'];?></div>
                                     <div class="Price PriceCell"><?php echo intval($items[$i]['price']);?>р.</div>
                                 </button>
+                        </form>
                                 <div class="Car-Cell">
-                                    <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                                        <div class="ToCar ToCarPP">+Купить</div>
-                                    </a>
+                                    <form action="category.php" method="post">
+                                        <input type="hidden" name="buy_product_id" value="<?= $items[$i]['id'] ?>">
+                                        <button type="submit" class="hiddenButton">
+                                            <div class="ToCar ToCarPP">+Купить</div>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-                        </form>
+
                     <?php endfor;?>
                 </div>
             </div>

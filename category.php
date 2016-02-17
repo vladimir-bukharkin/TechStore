@@ -9,6 +9,10 @@ function is_postback()
     return isset($_GET['catgory_id']);
 }
 
+function is_postbuy()
+{
+    return isset($_POST['buy_product_id']);
+}
 /*
  * Точка входа скрипта
  */
@@ -19,6 +23,15 @@ function main()
     //Если передан гет запрос, то открыть запрашиваемую страницу,
     //иначе открыть категорию catgory_id=1
     $dbh = db_connect();
+
+
+    if (is_postbuy()) {
+        if (is_current_user()) {
+            $product = array('count' => 1, 'user_id' => $_SESSION['user_id'], 'product_id' => $_POST['buy_product_id']);
+            db_product_incar_insert($dbh, $product);
+        } else redirect('login.php');
+}
+
     if(is_postback()) {
         $items_result = db_product_find_by_category_id($dbh, $_GET['catgory_id']);
     } else

@@ -54,7 +54,7 @@
                             </div>
                             <div class="product-name product-nameCell product-nameCar">
                                 <a href="product.php"><?php echo $car_items[$i][0]['title'];?></a>
-                                <div class="ProductID">Код товара:23523</div>
+                                <div class="ProductID">Код товара:<?php echo $car_items[$i][0]['id'];?></div>
                             </div>
                             <div class="AmountCell">
                                 <button class="Product-delete">X</button>
@@ -93,9 +93,12 @@
                                 <div class="Price"><?php echo intval($items[$i][0]['price']);?>р.</div>
                             </button>
                         </form>
-                        <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                            <div class="ToCar">+Купить</div>
-                        </a>
+                        <form action="car.php" method="post">
+                            <input type="hidden" name="buy_product_id" value="<?= $items[$i][0]['id'] ?>">
+                            <button type="submit" class="hiddenButton">
+                                <div class="ToCar">+Купить</div>
+                            </button>
+                        </form>
                     </div>
                 <?php endfor;?>
             </div>
@@ -112,7 +115,7 @@
         </div>
     </div>
 
-    <?php print_r($_SESSION);  ?>
+    <?php print_r($_SESSION);   ?>
 </div>
 </body>
 </html>
