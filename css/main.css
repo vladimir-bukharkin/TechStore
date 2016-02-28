@@ -661,3 +661,18 @@ img {
     background: none;
     border: none;
 }
+
+.count_in_stock {
+    border: solid green;
+    margin: 5px 10px 0 40px;
+}
+
+.ToCarNullStock {
+    background: none;
+    text-indent: 0;
+    line-height: normal;
+    vertical-align: baseline;
+    padding-top: 10px;
+    height: 50px;
+
+}

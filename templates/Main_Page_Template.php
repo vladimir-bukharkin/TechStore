@@ -86,6 +86,14 @@
                                 <div class="Price"><?php echo intval($items[$i][0]['price']);?>р.</div>
                             </button>
                         </form>
+                        <?php if($items[$i][0]['stock'] <=0) { ?>
+
+                            <!-- Пофиксить полпулярные товары, которых нет на складе -->
+                            <button type="button" class="hiddenButton">
+                                <div class="ToCar ToCarNullStock">Товар временно отстствует на складе</div>
+                            </button>
+                        <?php } else {?>
+
                         <form action="index.php" method="post">
                             <input type="hidden" name="buy_product_id" value="<?= $items[$i][0]['id'] ?>">
 
@@ -93,6 +101,8 @@
                                     <div class="ToCar">+Купить</div>
                                 </button>
                             </form>
+                        <?php }?>
+
                     </div>
                 <?php endfor;?>
             </div>

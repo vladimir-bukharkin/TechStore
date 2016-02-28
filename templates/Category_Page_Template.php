@@ -89,12 +89,19 @@
                                 </button>
                         </form>
                                 <div class="Car-Cell">
+                                    <?php if($items[$i]['stock'] <=0) { ?>
+                                        <button type="submit" class="hiddenButton">
+                                            <div class="ToCar ToCarPP ToCarNullStock">Товар временно отсутствует на складе</div>
+                                        </button>
+                                    <?php } else {?>
+
                                     <form action="category.php" method="post">
                                         <input type="hidden" name="buy_product_id" value="<?= $items[$i]['id'] ?>">
                                         <button type="submit" class="hiddenButton">
                                             <div class="ToCar ToCarPP">+Купить</div>
                                         </button>
                                     </form>
+                                    <?php }?>
                                 </div>
                             </div>
 
@@ -113,7 +120,7 @@
             <p>Группа ВР-09-15-11</p>
         </div>
     </div>
-    <?php print_r($_GET['catgory_id']); ?>
+    <?php print_r($items); ?>
 
 </div>
 </body>

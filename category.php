@@ -35,10 +35,13 @@ function main()
         } else redirect('login.php');
 }
 
+    /* показать выбранную категорию*/
     if(is_postback()) {
         $items_result = db_product_find_by_category_id($dbh, $_GET['catgory_id']);
     } else
         $items_result = db_product_find_by_category_id($dbh, 1);
+
+    if($items_result)
 
     $category_items = db_product_find_category_all($dbh);
     db_close($dbh);
