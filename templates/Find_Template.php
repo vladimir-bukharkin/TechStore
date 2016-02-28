@@ -69,40 +69,47 @@
 
         <!-- Items -->
         <div class="main-part">
-            <div class="category_name">Список товаров</div>
+            <div class="category_name">Результаты поиска</div>
             <div class="main-window">
 
                 <div class="Product-itemTable">
-                    <?php for($i=0; $i<count($items); $i++): ?>
-                        <form action="product.php" method="get">
-                            <input type="hidden" name="product_id" value="<?= $items[$i]['id'] ?>">
+                  <!-- Если не введен поисковой запрос или не найден товар, то вывести соответствующие сообщения,
+                  в дргом случае вывести массив найденных товаров-->
 
-                            <div class="Product-itemRow">
-                                <button type="submit" class="hiddenButton">
-                                    <div class="product-Cell-image">
-                                        <div class="image-div">
-                                            <img alt="Notebook" src="<?= $items[$i]['img'];?>">
-                                        </div>
+                    <?php if($items == null) echo "Не введен поисковой запрос";
+                        else
+                            if($items == 'products_not_found') echo "Не найден товар с данным названием";
+                                else {
+                                    for($i=0; $i<count($items); $i++): ?>
+                    <form action="product.php" method="get">
+                        <input type="hidden" name="product_id" value="<?= $items[$i]['id'] ?>">
+
+                        <div class="Product-itemRow">
+                            <button type="submit" class="hiddenButton">
+                                <div class="product-Cell-image">
+                                    <div class="image-div">
+                                        <img alt="Notebook" src="<?= $items[$i]['img'];?>">
                                     </div>
-                                    <div class="product-name product-nameCell"><?php echo $items[$i]['title'];?></div>
-                                    <div class="Price PriceCell"><?php echo intval($items[$i]['price']);?>р.</div>
-                                </button>
-                        </form>
-                                <div class="Car-Cell">
-                                    <form action="category.php" method="post">
-                                        <input type="hidden" name="buy_product_id" value="<?= $items[$i]['id'] ?>">
-                                        <button type="submit" class="hiddenButton">
-                                            <div class="ToCar ToCarPP">+Купить</div>
-                                        </button>
-                                    </form>
                                 </div>
-                            </div>
-
-                    <?php endfor;?>
+                                <div class="product-name product-nameCell"><?php echo $items[$i]['title'];?></div>
+                                <div class="Price PriceCell"><?php echo intval($items[$i]['price']);?>р.</div>
+                            </button>
+                    </form>
+                    <div class="Car-Cell">
+                        <form action="category.php" method="post">
+                            <input type="hidden" name="buy_product_id" value="<?= $items[$i]['id'] ?>">
+                            <button type="submit" class="hiddenButton">
+                                <div class="ToCar ToCarPP">+Купить</div>
+                            </button>
+                        </form>
+                    </div>
                 </div>
+
+                <?php endfor; }?>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- Footer -->
@@ -113,8 +120,6 @@
             <p>Группа ВР-09-15-11</p>
         </div>
     </div>
-    <?php print_r($_GET['catgory_id']); ?>
-
 </div>
 </body>
 </html>

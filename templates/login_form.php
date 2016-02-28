@@ -15,9 +15,10 @@
                 <a href="./"><img alt="TS Магазин цифрофой техники" src="Images/logo.png"></a>
             </div>
         </div>
+        <!--Поиск -->
         <div class="search">
-            <form action="POMENYAT" method="get">
-                <input class="inputSearch" type="text" name="search" value="" placeholder="Поиск...">
+            <form action="find.php" method="get">
+                <input class="inputSearch" type="text" name="search_text" value="<?= $search_text !== null ? $search_text : '' ?>" placeholder="Поиск...">
                 <input class="submitSearchBottom" type="submit" name="send" value="">
             </form>
         </div>

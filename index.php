@@ -16,11 +16,14 @@ function main()
     // обрабатываем отправленную форму
     $dbh = db_connect();
 
-    $count_in_car = product_count_in_car($dbh);
+    if (is_current_user()) {
+        $count_in_car = product_count_in_car($dbh);
+    } else $count_in_car = array();
+
     if (is_postbuy()) {
         if (is_current_user()) {
-        $product = array('count' => 1, 'user_id' => $_SESSION['user_id'], 'product_id' => $_POST['buy_product_id']);
-        db_product_incar_insert($dbh, $product);
+            $product = array('count' => 1, 'user_id' => $_SESSION['user_id'], 'product_id' => $_POST['buy_product_id']);
+            db_product_incar_insert($dbh, $product);
         } else redirect('login.php');
     }
 

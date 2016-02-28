@@ -983,3 +983,41 @@ function product_count_in_car($dbh)
     }
     return $count_in_car;
 }
+
+/*Поиск товара по названию*/
+
+function db_product_find_like_title($dbh, $find_title)
+{
+    $query = 'SELECT * FROM products WHERE title LIKE ? OR description LIKE ?';
+    $result = array();
+
+    // подготовливаем запрос для выполнения
+    $stmt = mysqli_prepare($dbh, $query);
+    if ($stmt === false)
+        db_handle_error($dbh);
+
+    $find_title = trim($find_title);
+    $find_title = "%".$find_title."%";
+
+    mysqli_stmt_bind_param($stmt, 'ss', $find_title, $find_title);
+
+    // выполняем запрос и получаем результат
+    if (mysqli_stmt_execute($stmt) === false)
+        db_handle_error($dbh);
+
+    // получаем результирующий набор строк
+    $qr = mysqli_stmt_get_result($stmt);
+    if ($qr === false)
+        db_handle_error($dbh);
+
+    // последовательно извлекаем строки
+    while ($row = mysqli_fetch_assoc($qr))
+        $result[] = $row;
+
+    // освобождаем ресурсы, связанные с хранением результата и запроса
+    mysqli_free_result($qr);
+    mysqli_stmt_close($stmt);
+
+    return $result;
+
+}

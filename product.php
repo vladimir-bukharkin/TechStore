@@ -23,7 +23,9 @@ function main()
     if(is_postback()) {
         // обрабатываем отправленную форму
         $dbh = db_connect();
-        $count_in_car = product_count_in_car($dbh);
+        if (is_current_user()) {
+            $count_in_car = product_count_in_car($dbh);
+        } else $count_in_car = array();
 
         $items_result = db_product_find_by_product_id($dbh, $_GET['product_id']);
         $category_items = db_product_find_category_all($dbh);
