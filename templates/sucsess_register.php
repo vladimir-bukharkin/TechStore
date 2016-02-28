@@ -16,7 +16,7 @@
         <!--Поиск -->
         <div class="search">
             <form action="find.php" method="get">
-                <input class="inputSearch" type="text" name="search_text" value="<?= $search_text !== null ? $search_text : '' ?>" placeholder="Поиск...">
+                <input class="inputSearch" type="text" name="search_text" value="" placeholder="Поиск...">
                 <input class="submitSearchBottom" type="submit" name="send" value="">
             </form>
         </div>
