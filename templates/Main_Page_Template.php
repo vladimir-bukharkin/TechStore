@@ -93,7 +93,11 @@
                                 <div class="ToCar ToCarNullStock">Товар временно отстствует на складе</div>
                             </button>
                         <?php } else {?>
-
+                            <?php if(in_array($items[$i][0]['id'], $car_productid)){ ?>
+                                <button type="button" class="hiddenButton">
+                                    <div class="ToCar ProductInCar">В корзине</div>
+                                </button>
+                        <?php } else { ?>
                         <form action="index.php" method="post">
                             <input type="hidden" name="buy_product_id" value="<?= $items[$i][0]['id'] ?>">
 
@@ -101,6 +105,7 @@
                                     <div class="ToCar">+Купить</div>
                                 </button>
                             </form>
+                        <?php }?>
                         <?php }?>
 
                     </div>

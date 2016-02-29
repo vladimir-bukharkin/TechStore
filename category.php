@@ -26,7 +26,19 @@ function main()
 
     if (is_current_user()) {
         $count_in_car = product_count_in_car($dbh);
-    } else $count_in_car = array();
+        $car_items = db_get_product_in_car_by_user($dbh);
+
+        /*Добавлен ли продукт в корзин пользователя? */
+
+            foreach ($car_items as $car_item)
+            {
+                $car_productid[] = $car_item[0]['id'];
+            }
+    } else {
+        $count_in_car = array();
+        $car_productid[] = null;
+    }
+
 
     if (is_postbuy()) {
         if (is_current_user()) {
@@ -41,13 +53,12 @@ function main()
     } else
         $items_result = db_product_find_by_category_id($dbh, 1);
 
-    if($items_result)
 
     $category_items = db_product_find_category_all($dbh);
     db_close($dbh);
 
     render('Category_Page_Template', array(
-        'items' => $items_result, 'category' => $category_items, 'count_in_car' => $count_in_car));
+        'items' => $items_result, 'category' => $category_items, 'count_in_car' => $count_in_car, 'car_productid' => $car_productid));
 
 }
 

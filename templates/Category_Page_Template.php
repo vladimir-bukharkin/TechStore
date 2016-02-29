@@ -95,12 +95,20 @@
                                         </button>
                                     <?php } else {?>
 
+
+                                       <?php if(in_array($items[$i]['id'], $car_productid)){ ?>
+                                            <button type="button" class="hiddenButton">
+                                                <div class="ToCar ToCarPP ProductInCar">В корзине</div>
+                                            </button>
+                                        <?php } else { ?>
+
                                     <form action="category.php" method="post">
                                         <input type="hidden" name="buy_product_id" value="<?= $items[$i]['id'] ?>">
                                         <button type="submit" class="hiddenButton">
                                             <div class="ToCar ToCarPP">+Купить</div>
                                         </button>
                                     </form>
+                                        <?php }?>
                                     <?php }?>
                                 </div>
                             </div>
@@ -120,8 +128,6 @@
             <p>Группа ВР-09-15-11</p>
         </div>
     </div>
-    <?php print_r($items); ?>
-
 </div>
 </body>
 </html>
