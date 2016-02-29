@@ -103,6 +103,7 @@
 
                                     <form action="category.php" method="post">
                                         <input type="hidden" name="buy_product_id" value="<?= $items[$i]['id'] ?>">
+                                        <input type="hidden" name="get_category_id" value="<?= $_GET['catgory_id'] ?>">
                                         <button type="submit" class="hiddenButton">
                                             <div class="ToCar ToCarPP">+Купить</div>
                                         </button>

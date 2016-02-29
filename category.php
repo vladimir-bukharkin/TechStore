@@ -13,6 +13,7 @@ function is_postbuy()
 {
     return isset($_POST['buy_product_id']);
 }
+
 /*
  * Точка входа скрипта
  */
@@ -47,8 +48,12 @@ function main()
         $car_productid[] = null;
     }
     /* показать выбранную категорию*/
-    if(is_postback()) {
-        $items_result = db_product_find_by_category_id($dbh, $_GET['catgory_id']);
+    if(is_postback() || is_postbuy()) {
+        if(is_postback()) $items_result = db_product_find_by_category_id($dbh, $_GET['catgory_id']);
+        else {
+            $items_result = db_product_find_by_category_id($dbh, $_POST['get_category_id']);
+            $_GET['catgory_id'] = $_POST['get_category_id'];
+        }
     } else
         $items_result = db_product_find_by_category_id($dbh, 1);
 
