@@ -32,14 +32,14 @@ function main()
         } else redirect('login.php');
     }
 
-    $count_in_car = product_count_in_car($dbh);
-
     if (isset($_POST['product_delete']))  {
         if (is_current_user()) {
             $product = array('user_id' => $_SESSION['user_id'], 'product_id' => $_POST['product_delete']);
             db_product_incar_delete($dbh, $product);
         } else redirect('login.php');
     }
+    
+    $count_in_car = product_count_in_car($dbh);
 
     $items_result = get_popular_products($dbh);
 

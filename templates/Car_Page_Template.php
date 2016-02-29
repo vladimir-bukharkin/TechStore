@@ -48,48 +48,53 @@
         <!-- Items -->
         <div class="main-part">
             <div class="DescMyCar">Моя корзина</div>
-            <div class="main-windowCar">
-                <div class="Product-itemTable">
-                    <?php for($i=0; $i<count($car_items); $i++): ?>
-                        <div class="Product-itemRow">
-                            <div class="product-Cell-image">
-                                <div class="image-div image-divCar">
-                                    <img alt="Notebook" src="<?= $car_items[$i][0]['img'];?>">
+
+            <?php if(empty($count_in_car)) { ?>
+                <div class="main-windowCar">В вашей корзине отсутствуют товары</div>
+            <?php }else { ?>
+                <div class="main-windowCar">
+                    <div class="Product-itemTable">
+                        <?php for($i=0; $i<count($car_items); $i++): ?>
+                            <div class="Product-itemRow">
+                                <div class="product-Cell-image">
+                                    <div class="image-div image-divCar">
+                                        <img alt="Notebook" src="<?= $car_items[$i][0]['img'];?>">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-name product-nameCell product-nameCar">
-                                <a href="product.php"><?php echo $car_items[$i][0]['title'];?></a>
-                                <div class="ProductID">Код товара:<?php echo $car_items[$i][0]['id'];?></div>
-                            </div>
-                            <div class="AmountCell">
-                                <form action="car.php" method="post">
-                                    <input type="hidden" name="product_delete" value="<?= $car_items[$i][0]['id'] ?>">
-                                    <button type="submit" class="Product-delete">X</button>
-                                </form>
-                                <div class="PriceDiv">
-                                    <?php echo $car_items[$i][0]['row_amount'];?>р.</div>
-                                <div class="AmountField">
+                                <div class="product-name product-nameCell product-nameCar">
+                                    <a href="product.php"><?php echo $car_items[$i][0]['title'];?></a>
+                                    <div class="ProductID">Код товара:<?php echo $car_items[$i][0]['id'];?></div>
+                                </div>
+                                <div class="AmountCell">
                                     <form action="car.php" method="post">
-                                        <input type="hidden" name="product_decrement" value="<?= $car_items[$i][0]['id'] ?>">
-                                        <button type="submit" class="Min-button MPbutton" name="MinusBut">-</button>
+                                        <input type="hidden" name="product_delete" value="<?= $car_items[$i][0]['id'] ?>">
+                                        <button type="submit" class="Product-delete">X</button>
                                     </form>
-                                        <input class="amount-product" type="text" name="amount-product"
+                                    <div class="PriceDiv">
+                                        <?php echo $car_items[$i][0]['row_amount'];?>р.</div>
+                                    <div class="AmountField">
+                                        <form action="car.php" method="post">
+                                            <input type="hidden" name="product_decrement" value="<?= $car_items[$i][0]['id'] ?>">
+                                            <button type="submit" class="Min-button MPbutton" name="MinusBut">-</button>
+                                        </form>
+                                            <input class="amount-product" type="text" name="amount-product"
                                                value="<?= intval($car_items[$i][0]['count']);?>">
-
-                                    <form action="car.php" method="post">
-                                        <input type="hidden" name="buy_product_id" value="<?= $car_items[$i][0]['id'] ?>">
-                                        <button type="submit" class="Plus-button MPbutton"">+</button>
-                                    </form>
-
+                                        <form action="car.php" method="post">
+                                            <input type="hidden" name="buy_product_id" value="<?= $car_items[$i][0]['id'] ?>">
+                                            <button type="submit" class="Plus-button MPbutton"">+</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php endfor;?>
+                        <?php endfor;?>
+                    </div>
+                    <div class="InTotal">Итого:<div class="TotalPrice">
+                        <?= intval($car_items[0]['total']);?>р.</div>
+                    </div>
                 </div>
-                <div class="InTotal">Итого:<div class="TotalPrice">
-                        <?= intval($car_items[0]['total']);?>р.</div></div>
-            </div>
             <input class="submitOffer" type="submit" name="SubmitOffer" value="Оформить заказ">
+            <?php } ?>
+
         </div>
         <div class="main-part PopularPart">
             <div class="category_name popular">Популярное</div>
