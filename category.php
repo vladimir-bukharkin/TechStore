@@ -57,7 +57,7 @@ function main()
     db_close($dbh);
 
     render('Category_Page_Template', array(
-        'items' => $items_result, 'category' => $category_items, 'count_in_car' => $count_in_car, 'car_productid' => $car_productid , 'car_items' => $car_items));
+        'items' => $items_result, 'category' => $category_items, 'count_in_car' => $count_in_car, 'car_productid' => $car_productid));
 
 }
 

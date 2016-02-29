@@ -86,9 +86,28 @@
                         <div class="PriceStockCar-div">
                             <div class="ProductPrice"><?php echo intval($items[0]['price']);?>р.</div>
                             <div class="inStock">Товар имеется на складе: <?php echo intval($items[0]['stock']);?>шт.</div>
-                            <a href="<?= is_current_user() ? 'car.php' : 'login.php' ?>">
-                                <div class="ToCar ToCarPP">+Купить</div>
-                            </a>
+
+                            <?php if($items[0]['stock'] <=0) { ?>
+                                <button type="submit" class="hiddenButton">
+                                    <div class="ToCar ToCarPP ToCarNullStock">Товар временно отсутствует на складе</div>
+                                </button>
+                            <?php } else {?>
+
+                                <?php if(in_array($items[0]['id'], $car_productid)){ ?>
+                                    <button type="button" class="hiddenButton">
+                                        <div class="ToCar ToCarPP ProductInCar">В корзине</div>
+                                    </button>
+                                <?php } else { ?>
+
+                                    <form action="product.php" method="post">
+                                        <input type="hidden" name="buy_product_id" value="<?= $items[0]['id'] ?>">
+                                        <button type="submit" class="hiddenButton">
+                                            <div class="ToCar ToCarPP">+Купить</div>
+                                        </button>
+                                    </form>
+                                <?php }?>
+                            <?php }?>
+
                         </div>
                     </div>
                 </div>

@@ -95,7 +95,6 @@
                                         </button>
                                     <?php } else {?>
 
-
                                        <?php if(in_array($items[$i]['id'], $car_productid)){ ?>
                                             <button type="button" class="hiddenButton">
                                                 <div class="ToCar ToCarPP ProductInCar">В корзине</div>
