@@ -20,12 +20,13 @@ function main()
         $count_in_car = product_count_in_car($dbh);
         $car_items = db_get_product_in_car_by_user($dbh);
 
-        /*Добавлен ли продукт в корзин пользователя? */
-
-        foreach ($car_items as $car_item)
-        {
-            $car_productid[] = $car_item[0]['id'];
-        }
+         /*Добавлен ли продукт в корзин пользователя? */
+         /* Если корзина пустая, то в массиве хранится  значение
+         Array ( [0] => Array ( [total] => 0 ) ), отсюда получается следующий оператор) исправлю потом */
+         if($car_items[0]['total'] !== 0)
+             foreach ($car_items as $car_item) {
+                 $car_productid[] = $car_item[0]['id'];
+             } else $car_productid[] = null;
     } else {
         $count_in_car = array();
         $car_productid[] = null;

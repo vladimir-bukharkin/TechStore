@@ -29,11 +29,12 @@ function main()
         $car_items = db_get_product_in_car_by_user($dbh);
 
         /*Добавлен ли продукт в корзин пользователя? */
-
-            foreach ($car_items as $car_item)
-            {
+        /* Если корзина пустая, то в массиве хранится  значение
+        Array ( [0] => Array ( [total] => 0 ) ), отсюда получается следующий оператор) исправлю потом */
+        if($car_items[0]['total'] !== 0)
+            foreach ($car_items as $car_item) {
                 $car_productid[] = $car_item[0]['id'];
-            }
+        } else $car_productid[] = null;
     } else {
         $count_in_car = array();
         $car_productid[] = null;
@@ -58,7 +59,7 @@ function main()
     db_close($dbh);
 
     render('Category_Page_Template', array(
-        'items' => $items_result, 'category' => $category_items, 'count_in_car' => $count_in_car, 'car_productid' => $car_productid));
+        'items' => $items_result, 'category' => $category_items, 'count_in_car' => $count_in_car, 'car_productid' => $car_productid , 'car_items' => $car_items));
 
 }
 
