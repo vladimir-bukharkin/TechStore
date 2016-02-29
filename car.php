@@ -45,13 +45,14 @@ function main()
 
     $car_items = db_get_product_in_car_by_user($dbh);
 
+    $res = db_car_find_by_user_id_and_product_id($dbh, $_SESSION['user_id'], 42);
+
     db_close($dbh);
 
 
 
-
     render('Car_Page_Template', array(
-        'items' => $items_result, 'car_items' => $car_items, 'count_in_car' => $count_in_car));
+        'items' => $items_result, 'car_items' => $car_items, 'count_in_car' => $count_in_car, 'res' => $res));
 }
 
 main();

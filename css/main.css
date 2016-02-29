@@ -679,3 +679,13 @@ img {
 .ProductInCar {
     background-color: lightgreen;
 }
+
+.count_in_stock_CP {
+    margin: 5px 0 0 20px;
+    color: rgb(150, 150, 150);
+    font-size: small;
+}
+
+.buttonNA {
+    background: gray;
+}

@@ -81,8 +81,15 @@
                                                value="<?= intval($car_items[$i][0]['count']);?>">
                                         <form action="car.php" method="post">
                                             <input type="hidden" name="buy_product_id" value="<?= $car_items[$i][0]['id'] ?>">
-                                            <button type="submit" class="Plus-button MPbutton"">+</button>
+                                            <?php if($car_items[$i][0]['stock'] <= intval($car_items[$i][0]['count'])) {?>
+                                                <button type="button" class="Plus-button MPbutton buttonNA"">+</button>
+                                            <?php } else { ?>
+                                                <button type="submit" class="Plus-button MPbutton"">+</button>
+                                            <?php }?>
                                         </form>
+                                    </div>
+                                    <div class="count_in_stock_CP">Товара на складе:
+                                        <?php echo $car_items[$i][0]['stock'];?>
                                     </div>
                                 </div>
                             </div>
@@ -133,8 +140,7 @@
             <p>Группа ВР-09-15-11</p>
         </div>
     </div>
-
-    <?php echo $count_in_car;   ?>
+    <?php print_r($res);   ?>
 </div>
 </body>
 </html>

@@ -876,7 +876,14 @@ function db_product_incar_insert($dbh, $product)
     if(bd_is_current_product($dbh, $product['product_id'], $product['user_id']))
     {
         $result = db_car_find_by_user_id_and_product_id($dbh, $product['user_id'], $product['product_id']);
-        $result[0]['count'] += $product['count'];
+        $temp = db_product_find_by_product_id($dbh, $result[0]['products_id']);
+        /*ѕроверка возможности добавлени€ товара в корзину в зависимости от наличи€ товара на складе.
+         * ≈сли в корзине кол-во товаров меньше кол-ва товаров на складе, то можно прибавить, в другом случае,
+         * в корзине бдет такое же кол-во товаров как и на складе
+        */
+        if ($result[0]['count'] < $temp[0]['stock']) {
+            $result[0]['count'] += $product['count'];
+        } else $result[0]['count'] = $temp[0]['stock'];
 
         $query = 'UPDATE car SET count=? WHERE id=?';
         // подготовливаем запрос дл€ выполнени€
