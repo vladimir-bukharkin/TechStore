@@ -16,9 +16,16 @@ function main()
     // обрабатываем отправленную форму
     $dbh = db_connect();
 
+    if (is_postbuy()) {
+        if (is_current_user()) {
+            $product = array('count' => 1, 'user_id' => $_SESSION['user_id'], 'product_id' => $_POST['buy_product_id']);
+            db_product_incar_insert($dbh, $product);
+        } else redirect('login.php');
+    }
+
      if (is_current_user()) {
-        $count_in_car = product_count_in_car($dbh);
         $car_items = db_get_product_in_car_by_user($dbh);
+        $count_in_car = product_count_in_car($dbh);
 
          /*Добавлен ли продукт в корзин пользователя? */
          /* Если корзина пустая, то в массиве хранится  значение
@@ -30,13 +37,6 @@ function main()
     } else {
         $count_in_car = array();
         $car_productid[] = null;
-    }
-
-    if (is_postbuy()) {
-        if (is_current_user()) {
-            $product = array('count' => 1, 'user_id' => $_SESSION['user_id'], 'product_id' => $_POST['buy_product_id']);
-            db_product_incar_insert($dbh, $product);
-        } else redirect('login.php');
     }
 
     //извлекаем массив популярных товаров

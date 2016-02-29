@@ -38,7 +38,7 @@ function main()
             db_product_incar_delete($dbh, $product);
         } else redirect('login.php');
     }
-    
+
     $count_in_car = product_count_in_car($dbh);
 
     $items_result = get_popular_products($dbh);
